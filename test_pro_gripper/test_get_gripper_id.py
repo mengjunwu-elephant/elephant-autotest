@@ -17,9 +17,8 @@ class TestSetGripperID(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestProGripper() #实例化夹爪
+        cls.device = TestProGripper()  # 实例化夹爪
         cls.logger.info("初始化完成，接口测试开始")
-
 
     # 清理测试环境
     @classmethod
@@ -28,8 +27,7 @@ class TestSetGripperID(unittest.TestCase):
         cls.device.m.close()
         cls.logger.info("环境清理完成，接口测试结束")
 
-
-    @data(*[case for case in cases if case.get("test_type") == "normal"]) #筛选有效等价类用例
+    @data(*[case for case in cases if case.get("test_type") == "normal"])  # 筛选有效等价类用例
     def test_set_gripper_id(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -47,7 +45,7 @@ class TestSetGripperID(unittest.TestCase):
         # 请求结果断言
         try:
             self.assertEqual(case['expect_data'], set_res)
-            self.assertEqual(get_res,case["parameter"])
+            self.assertEqual(get_res, case["parameter"])
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
             self.logger.debug('期望数据：{}'.format(case['expect_data']))
@@ -58,16 +56,16 @@ class TestSetGripperID(unittest.TestCase):
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
-
-    @data(*[case for case in cases if case.get("test_type") == "exception"]) #筛选无效等价类用例
-    def test_out_limit(self,case):
+    @data(*[case for case in cases if case.get("test_type") == "exception"])  # 筛选无效等价类用例
+    def test_out_limit(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_parameters:{}'.format(case['parameter']))
         # 请求发送
         try:
-            with self.assertRaises(ValueError, msg="用例{}未触发value错误，ID值为{}".format(case['title'], case['parameter'])):
+            with self.assertRaises(ValueError,
+                                   msg="用例{}未触发value错误，ID值为{}".format(case['title'], case['parameter'])):
                 self.device.m.set_gripper_Id(int(case['parameter']))
         except AssertionError:
             self.logger.error("断言失败：用例{}未触发异常".format(case['title']))
@@ -79,7 +77,3 @@ class TestSetGripperID(unittest.TestCase):
             self.logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
-
-
-
-

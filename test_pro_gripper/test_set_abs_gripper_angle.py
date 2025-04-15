@@ -21,7 +21,7 @@ class TestSetAbsGripperAngle(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestProGripper()  #实例化夹爪
+        cls.device = TestProGripper()  # 实例化夹爪
         cls.logger.info("初始化完成，接口测试开始")
 
     # 清理测试环境
@@ -35,8 +35,7 @@ class TestSetAbsGripperAngle(unittest.TestCase):
         self.device.m.set_abs_gripper_value(0, 100)
         sleep(3)
 
-
-    @data(*cases)
+    @data(*[case for case in cases if case.get("test_type") == 1])
     def test_set_abs_gripper_angle(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -64,7 +63,7 @@ class TestSetAbsGripperAngle(unittest.TestCase):
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
-    @data(*cases)
+    @data(*[case for case in cases if case.get("test_type") == 2])
     def test_pause_and_resume(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
 
@@ -79,7 +78,9 @@ class TestSetAbsGripperAngle(unittest.TestCase):
         if type(abs_res and pause_res and resume_res) == int:
             self.logger.debug('请求类型断言成功')
         else:
-            self.logger.debug('请求类型断言失败，实际类型为绝对角度返回{}，暂停返回{}，恢复返回{}'.format(type(abs_res),type(pause_res),type(resume_res)))
+            self.logger.debug(
+                '请求类型断言失败，实际类型为绝对角度返回{}，暂停返回{}，恢复返回{}'.format(type(abs_res), type(pause_res),
+                                                                                         type(resume_res)))
 
         # 请求结果断言
         try:
@@ -89,14 +90,14 @@ class TestSetAbsGripperAngle(unittest.TestCase):
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
             self.logger.debug('期望数据：{}'.format(case['expect_data']))
-            self.logger.debug('实际结果绝对角度返回{}，暂停返回{}，恢复返回{}'.format(abs_res,pause_res,resume_res))
+            self.logger.debug('实际结果绝对角度返回{}，暂停返回{}，恢复返回{}'.format(abs_res, pause_res, resume_res))
             raise e
         else:
             self.logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
-    @data(*cases)
+    @data(*[case for case in cases if case.get("test_type") == 3])
     def test_stop(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 发送绝对角度
@@ -108,7 +109,8 @@ class TestSetAbsGripperAngle(unittest.TestCase):
         if type(abs_res and stop_res) == int:
             self.logger.debug('请求类型断言成功')
         else:
-            self.logger.debug('请求类型断言失败，实际类型为绝对角度返回{}，停止返回{}'.format(type(abs_res),type(stop_res)))
+            self.logger.debug(
+                '请求类型断言失败，实际类型为绝对角度返回{}，停止返回{}'.format(type(abs_res), type(stop_res)))
 
         # 请求结果断言
         try:
@@ -117,23 +119,24 @@ class TestSetAbsGripperAngle(unittest.TestCase):
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
             self.logger.debug('期望数据：{}'.format(case['expect_data']))
-            self.logger.debug('实际结果绝对角度返回{}，停止返回{}'.format(abs_res,stop_res))
+            self.logger.debug('实际结果绝对角度返回{}，停止返回{}'.format(abs_res, stop_res))
             raise e
         else:
             self.logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
-    @data(*[case for case in cases if case.get("test_type") == "exception"]) #筛选无效等价类用例
-    def test_out_limit(self,case):
+    @data(*[case for case in cases if case.get("test_type") == "exception"])  # 筛选无效等价类用例
+    def test_out_limit(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_value:{}'.format(case['value']))
         # 请求发送
         try:
-            with self.assertRaises(ValueError, msg="用例{}未触发value错误，value值为{}".format(case['title'], case['value'])):
-                self.device.m.set_abs_gripper_value(case["value"],case["speed"])
+            with self.assertRaises(ValueError,
+                                   msg="用例{}未触发value错误，value值为{}".format(case['title'], case['value'])):
+                self.device.m.set_abs_gripper_value(case["value"], case["speed"])
         except AssertionError:
             self.logger.error("断言失败：用例{}未触发异常".format(case['title']))
             raise  # 重新抛出异常，让测试框架捕获

@@ -19,9 +19,8 @@ class TestPause(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestProGripper() #实例化夹爪
+        cls.device = TestProGripper()  # 实例化夹爪
         cls.logger.info("初始化完成，接口测试开始")
-
 
     # 清理测试环境
     @classmethod
@@ -37,7 +36,7 @@ class TestPause(unittest.TestCase):
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_parameters:{}'.format(case['parameter']))
         # 请求发送
-        self.device.m.set_gripper_value(100,100)
+        self.device.m.set_gripper_value(100, 100)
         sleep(0.2)
         response = self.device.m.set_gripper_pause()
 
@@ -59,5 +58,3 @@ class TestPause(unittest.TestCase):
             self.logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
-
-

@@ -19,14 +19,13 @@ class TestGetGripperStatus(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestProGripper() #实例化夹爪
+        cls.device = TestProGripper()  # 实例化夹爪
         cls.logger.info("初始化完成，接口测试开始")
-
 
     # 清理测试环境
     @classmethod
     def tearDownClass(cls):
-        cls.device.go_zero() #回到零位
+        cls.device.go_zero()  # 回到零位
         cls.device.m.close()
         cls.logger.info("环境清理完成，接口测试结束")
 
@@ -41,7 +40,7 @@ class TestGetGripperStatus(unittest.TestCase):
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_parameters:{}'.format(case['parameter']))
         # 请求发送
-        self.device.m.set_gripper_value(100,5)
+        self.device.m.set_gripper_value(100, 5)
         sleep(0.2)
         response = self.device.m.get_gripper_status()
         # 请求结果类型断言
@@ -102,7 +101,7 @@ class TestGetGripperStatus(unittest.TestCase):
         self.logger.debug('test_parameters:{}'.format(case['parameter']))
         # 请求发送
         input("请放置物体到夹爪中间后，点击回车开始测试")
-        self.device.m.set_gripper_value(0,100)
+        self.device.m.set_gripper_value(0, 100)
         sleep(3)
         response = self.device.m.get_gripper_status()
 

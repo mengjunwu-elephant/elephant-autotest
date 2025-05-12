@@ -1,17 +1,16 @@
 import unittest
-from time import sleep
-
 from ddt import ddt, data
+
 from common1.test_data_handler import get_test_data_from_excel
 from common1 import logger
 from settings import TestMercury
 
 # 从Excel中提取数据
-cases = get_test_data_from_excel(TestMercury.TEST_DATA_FILE, "get_modified_version")
+cases = get_test_data_from_excel(TestMercury.TEST_DATA_FILE, "get_limit_switch")
 
 
 @ddt
-class TestGetModifiedVersion(unittest.TestCase):
+class TestGetLimitSwitch(unittest.TestCase):
     # 实例化日志模块
     logger = logger
 
@@ -36,27 +35,58 @@ class TestGetModifiedVersion(unittest.TestCase):
         cls.logger.info("环境清理完成，接口测试结束")
 
     @data(*[case for case in cases if case.get("test_type") == "power_on"])
-    def test_get_modified_version(self, case):
+    def test_get_limit_switch(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
-        self.logger.debug('test_parameters:{}'.format(case['parameters']))
-        sleep(1)
+        self.logger.debug('test_parameter:{}'.format(case['parameter']))
         # 左臂请求发送
-        l_response = self.device.ml.get_modified_version()
+        l_response = self.device.ml.get_limit_switch()
 
         # 右臂请求发送
-        r_response = self.device.mr.get_modified_version()
+        r_response = self.device.mr.get_limit_switch()
         try:
             # 请求结果类型断言
-            if type(l_response) == int:
+            if type(l_response) == list:
                 self.logger.debug('左臂请求类型断言成功')
             else:
                 self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
-            if type(r_response) == int:
+            if type(r_response) == list:
                 self.logger.debug('右臂请求类型断言成功')
             else:
                 self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
+
+            # 请求结果断言
+            self.assertEqual(eval(case['r_expect_data']), r_response)
+            self.assertEqual(eval(case['l_expect_data']), l_response)
+        except AssertionError as e:
+            self.logger.exception('请求结果断言失败')
+            self.logger.debug('左臂期望数据：{}'.format(case['l_expect_data']))
+            self.logger.debug('右臂期望数据：{}'.format(case['r_expect_data']))
+            self.logger.debug('左臂实际结果：{}'.format(l_response))
+            self.logger.debug('右臂实际结果：{}'.format(r_response))
+            raise e
+        else:
+            self.logger.info('请求结果断言成功,用例【{}】测试成功'.format(case['title']))
+        finally:
+            self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
+
+    @data(*[case for case in cases if case.get("test_type") == "power_on_only"])
+    def test_power_on_only(self,case):
+        # 机械臂进入仅上电模式
+        self.device.power_on_only()
+
+        self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
+        # 调试信息
+        self.logger.debug('test_api:{}'.format(case['api']))
+        self.logger.debug('test_parameter:{}'.format(case['parameter']))
+
+        # 左臂请求发送
+        l_response = self.device.ml.get_limit_switch()
+
+        # 右臂请求发送
+        r_response = self.device.mr.get_limit_switch()
+        try:
             # 请求结果断言
             self.assertEqual(case['r_expect_data'], r_response)
             self.assertEqual(case['l_expect_data'], l_response)
@@ -74,73 +104,24 @@ class TestGetModifiedVersion(unittest.TestCase):
         # 恢复测试环境
         self.device.reset()
 
-    @data(*[case for case in cases if case.get("test_type") == "power_on_only"])
-    def test_power_on_only(self,case):
-        # 机械臂进入仅上电模式
-        self.device.power_on_only()
-
-        self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
-        # 调试信息
-        self.logger.debug('test_api:{}'.format(case['api']))
-        self.logger.debug('test_parameters:{}'.format(case['parameters']))
-        sleep(1)
-        # 左臂请求发送
-        l_response = self.device.ml.get_modified_version()
-
-        # 右臂请求发送
-        r_response = self.device.mr.get_modified_version()
-        try:
-            # 请求结果类型断言
-            if type(l_response) == int:
-                self.logger.debug('左臂请求类型断言成功')
-            else:
-                self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
-            if type(r_response) == int:
-                self.logger.debug('右臂请求类型断言成功')
-            else:
-                self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
-                # 请求结果断言
-            self.assertEqual(case['r_expect_data'], r_response)
-            self.assertEqual(case['l_expect_data'], l_response)
-        except AssertionError as e:
-            self.logger.exception('请求结果断言失败')
-            self.logger.debug('左臂期望数据：{}'.format(case['l_expect_data']))
-            self.logger.debug('右臂期望数据：{}'.format(case['r_expect_data']))
-            self.logger.debug('左臂实际结果：{}'.format(l_response))
-            self.logger.debug('右臂实际结果：{}'.format(r_response))
-            raise e
-        else:
-            self.logger.info('请求结果断言成功,用例【{}】测试成功'.format(case['title']))
-        finally:
-            self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
-        # 恢复测试环境
-        self.device.reset()
-
     @data(*[case for case in cases if case.get("test_type") == "power_off"])
-    def test_power_0ff(self, case):
+    def test_power_off(self, case):
         # 机械臂进入断电模式
-        self.device.power_off()
+        self.device.mr.power_off()
+        self.device.ml.power_off()
 
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
-        self.logger.debug('test_parameters:{}'.format(case['parameters']))
-        sleep(1)
+        self.logger.debug('test_parameter:{}'.format(case['parameter']))
+
         # 左臂请求发送
-        l_response = self.device.ml.get_modified_version()
+        l_response = self.device.ml.get_limit_switch()
 
         # 右臂请求发送
-        r_response = self.device.mr.get_modified_version()
+        r_response = self.device.mr.get_limit_switch()
+
         try:
-            # 请求结果类型断言
-            if type(l_response) == int:
-                self.logger.debug('左臂请求类型断言成功')
-            else:
-                self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
-            if type(r_response) == int:
-                self.logger.debug('右臂请求类型断言成功')
-            else:
-                self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
             # 请求结果断言
             self.assertEqual(case['r_expect_data'], r_response)
             self.assertEqual(case['l_expect_data'], l_response)

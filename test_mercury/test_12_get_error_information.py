@@ -104,9 +104,8 @@ class TestGetErrorInformation(unittest.TestCase):
             else:
                 self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
             # 请求结果断言
-
-                self.assertEqual(case['r_expect_data'], r_response)
-                self.assertEqual(case['l_expect_data'], l_response)
+            self.assertEqual(case['r_expect_data'], r_response)
+            self.assertEqual(case['l_expect_data'], l_response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
             self.logger.debug('左臂期望数据：{}'.format(case['l_expect_data']))

@@ -28,7 +28,6 @@ class TestSetSpeed(unittest.TestCase):
         cls.logger.info("环境清理完成，接口测试结束")
 
     @data(*[case for case in cases if case.get("test_type") == "normal"])  # 筛选有效等价类用例
-    @data(*cases)
     def test_set_speed(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -36,15 +35,13 @@ class TestSetSpeed(unittest.TestCase):
         self.logger.debug('test_parameters:{}'.format(case['parameter']))
         # 请求发送
         response = self.device.m.set_gripper_speed(case["parameter"])
-
-        # 请求结果类型断言
-        if type(response) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(response) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')

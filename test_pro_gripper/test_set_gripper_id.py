@@ -41,14 +41,13 @@ class TestSetGripperID(unittest.TestCase):
         # 请求发送
         set_res = self.device.m.set_gripper_Id(int(case["parameter"]))
         get_res = self.device.m.get_gripper_Id()
-        # 请求结果类型断言
-        if type(set_res) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(set_res)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(set_res) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(set_res)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], set_res)
             self.assertEqual(get_res, case["parameter"])
         except AssertionError as e:

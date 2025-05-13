@@ -34,15 +34,13 @@ class TestGetFirmwareVersion(unittest.TestCase):
         self.logger.debug('test_parameters:{}'.format(case['parameters']))
         # 请求发送
         response = self.device.m.get_firmware_version()
-
-        # 请求结果类型断言
-        if type(response) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(response) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')

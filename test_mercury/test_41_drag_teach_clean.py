@@ -1,6 +1,6 @@
 import unittest
 from ddt import ddt, data
-import settings
+
 from common1.test_data_handler import get_test_data_from_excel
 from common1 import logger
 from settings import TestMercury
@@ -18,9 +18,9 @@ class TestDragTeachClean(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         try:
-            cls.device = TestMercury() #实例化机械臂
-            cls.device.ml.power_on() #左臂上电
-            cls.device.mr.power_on() #右臂上电
+            cls.device = TestMercury()  # 实例化机械臂
+            cls.device.ml.power_on()  # 左臂上电
+            cls.device.mr.power_on()  # 右臂上电
             cls.logger.info("机械臂初始化完成，接口测试开始")
         except ValueError as e:
             cls.logger.exception("机械臂上电失败")
@@ -29,8 +29,8 @@ class TestDragTeachClean(unittest.TestCase):
     # 清理测试环境
     @classmethod
     def tearDownClass(cls):
-        cls.device.mr.power_off() #右臂需先下电
-        cls.device.ml.power_off() #左臂下电
+        cls.device.mr.power_off()  # 右臂需先下电
+        cls.device.ml.power_off()  # 左臂下电
         cls.logger.info("环境清理完成，接口测试结束")
 
     @data(*cases)
@@ -76,5 +76,3 @@ class TestDragTeachClean(unittest.TestCase):
             self.logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
-
-

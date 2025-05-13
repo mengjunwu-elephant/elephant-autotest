@@ -48,6 +48,7 @@ class TestSendAngle(unittest.TestCase):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
+        self.logger.debug('test_joint:{}'.format(case['joint']))
         self.logger.debug('test_parameter_1:{}'.format(case['parameter']))
         self.logger.debug('test_parameter_2:{}'.format(case['speed']))
         # 左臂请求发送
@@ -75,6 +76,7 @@ class TestSendAngle(unittest.TestCase):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
+        self.logger.debug('test_joint:{}'.format(case['joint']))
         self.logger.debug('test_parameter_1:{}'.format(case['parameter']))
         self.logger.debug('test_parameter_2:{}'.format(case['speed']))
         # 右臂请求发送
@@ -102,6 +104,7 @@ class TestSendAngle(unittest.TestCase):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
+        self.logger.debug('test_joint:{}'.format(case['joint']))
         self.logger.debug('test_parameter_1:{}'.format(case['parameter']))
         self.logger.debug('test_parameter_2:{}'.format(case['speed']))
         # 请求发送

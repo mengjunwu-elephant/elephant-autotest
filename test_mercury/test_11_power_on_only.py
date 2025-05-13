@@ -1,0 +1,149 @@
+import unittest
+from ddt import ddt, data
+from common1.test_data_handler import get_test_data_from_excel
+from common1 import logger
+from settings import TestMercury
+
+# 从Excel中提取数据
+cases = get_test_data_from_excel(TestMercury.TEST_DATA_FILE, "power_on_only")
+
+
+@ddt
+class TestPowerOnOnly(unittest.TestCase):
+    # 实例化日志模块
+    logger = logger
+
+    @classmethod
+    def setUpClass(cls):
+        """
+        水星系列初始化先左臂上电，后右臂上电
+        """
+        cls.device = TestMercury()
+        cls.logger.info("初始化完成，接口测试开始")
+
+    @classmethod
+    def tearDownClass(cls):
+        """
+        下电顺序为先右臂下电，后左臂下电
+        :return:
+        """
+        cls.device.mr.power_off()
+        cls.device.ml.power_off()
+        cls.logger.info("环境清理完成，接口测试结束")
+
+    def tearDown(self):
+        self.device.power_off()
+
+    @data(*[case for case in cases if case.get("test_type") == "normal"])
+    def test_power_on_only(self, case):
+        self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
+        # 调试信息
+        self.logger.debug('test_api:{}'.format(case['api']))
+        self.logger.debug('test_parameter:{}'.format(case['parameter']))
+        # 左臂请求发送
+        input("请确认末端颜色是否由黄变绿，按回车键继续测试")
+        l_response = self.device.ml.power_on_only()
+
+        # 右臂请求发送
+        r_response = self.device.mr.power_on_only()
+
+        # 请求结果类型断言
+        if type(l_response) == int:
+            self.logger.debug('左臂请求类型断言成功')
+        else:
+            self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
+        if type(r_response) == int:
+            self.logger.debug('右臂请求类型断言成功')
+        else:
+            self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
+
+        # 请求结果断言
+        try:
+            self.assertEqual(case['r_expect_data'], r_response)
+            self.assertEqual(case['l_expect_data'], l_response)
+        except AssertionError as e:
+            self.logger.exception('请求结果断言失败')
+            self.logger.debug('左臂期望数据：{}'.format(case['l_expect_data']))
+            self.logger.debug('右臂期望数据：{}'.format(case['r_expect_data']))
+            self.logger.debug('左臂实际结果：{}'.format(l_response))
+            self.logger.debug('右臂实际结果：{}'.format(r_response))
+            raise e
+        else:
+            self.logger.info('请求结果断言成功,用例【{}】测试成功'.format(case['title']))
+        finally:
+            self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
+
+
+    @data(*[case for case in cases if case.get("test_type") == "emergency"])
+    def test_emergency(self, case):
+        self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
+        # 调试信息
+        self.logger.debug('test_api:{}'.format(case['api']))
+        self.logger.debug('test_parameter:{}'.format(case['parameter']))
+        # 左臂请求发送
+        input("请拍下急停，按回车键继续测试")
+        l_response = self.device.ml.power_on_only()
+
+        # 右臂请求发送
+        r_response = self.device.mr.power_on_only()
+        input("请松开急停，按回车键继续测试")
+        # 请求结果类型断言
+        if type(l_response) == int:
+            self.logger.debug('左臂请求类型断言成功')
+        else:
+            self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
+        if type(r_response) == int:
+            self.logger.debug('右臂请求类型断言成功')
+        else:
+            self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
+
+        # 请求结果断言
+        try:
+            self.assertEqual(case['r_expect_data'], r_response)
+            self.assertEqual(case['l_expect_data'], l_response)
+        except AssertionError as e:
+            self.logger.exception('请求结果断言失败')
+            self.logger.debug('左臂期望数据：{}'.format(case['l_expect_data']))
+            self.logger.debug('右臂期望数据：{}'.format(case['r_expect_data']))
+            self.logger.debug('左臂实际结果：{}'.format(l_response))
+            self.logger.debug('右臂实际结果：{}'.format(r_response))
+            raise e
+        else:
+            self.logger.info('请求结果断言成功,用例【{}】测试成功'.format(case['title']))
+        finally:
+            self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
+
+
+    @data(*[case for case in cases if case.get("test_type") == "emergency"])
+    def test_emergency(self, case):
+        self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
+        # 调试信息
+        self.logger.debug('test_api:{}'.format(case['api']))
+        self.logger.debug('test_parameter:{}'.format(case['parameter']))
+        # 左臂请求发送
+
+        l_response = self.device.ml.power_on_only()
+
+        # 右臂请求发送
+        r_response = self.device.mr.power_on_only()
+
+        # 左右臂运动控制
+        input("请观察机械臂是否运动")
+        l_move_res = self.device.ml.send_angle(1,10,self.device.speed)
+        r_move_res = self.device.mr.send_angle(1, 10, self.device.speed)
+
+        # 请求结果断言
+        try:
+            self.assertEqual(case['r_expect_data'], r_move_res)
+            self.assertEqual(case['l_expect_data'], l_move_res)
+        except AssertionError as e:
+            self.logger.exception('请求结果断言失败')
+            self.logger.debug('左臂期望数据：{}'.format(case['l_expect_data']))
+            self.logger.debug('右臂期望数据：{}'.format(case['r_expect_data']))
+            self.logger.debug('左臂实际结果：{}'.format(l_move_res))
+            self.logger.debug('右臂实际结果：{}'.format(r_move_res))
+            raise e
+        else:
+            self.logger.info('请求结果断言成功,用例【{}】测试成功'.format(case['title']))
+        finally:
+            self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))

@@ -17,9 +17,8 @@ class TestGetGripperJointMiniPressure(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestMyHand() #实例化夹爪
+        cls.device = TestMyHand()  # 实例化夹爪
         cls.logger.info("初始化完成，接口测试开始")
-
 
     # 清理测试环境
     @classmethod
@@ -36,15 +35,13 @@ class TestGetGripperJointMiniPressure(unittest.TestCase):
         self.logger.debug('test_joint:{}'.format(case['joint']))
         # 请求发送
         response = self.device.m.get_gripper_joint_torque(case["joint"])
-
-        # 请求结果类型断言
-        if type(response) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(response) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
@@ -56,15 +53,16 @@ class TestGetGripperJointMiniPressure(unittest.TestCase):
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
-    @data(*[case for case in cases if case.get("test_type") == "exception"]) #筛选无效等价类用例
-    def test_out_limit(self,case):
+    @data(*[case for case in cases if case.get("test_type") == "exception"])  # 筛选无效等价类用例
+    def test_out_limit(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_joint:{}'.format(case['joint']))
         # 请求发送
         try:
-            with self.assertRaises(ValueError, msg="用例{}未触发value错误，扭矩值为{}".format(case['title'], case['joint'])):
+            with self.assertRaises(ValueError,
+                                   msg="用例{}未触发value错误，扭矩值为{}".format(case['title'], case['joint'])):
                 self.device.m.get_gripper_joint_torque(int(case['joint']))
         except AssertionError:
             self.logger.error("断言失败：用例{}未触发异常".format(case['title']))

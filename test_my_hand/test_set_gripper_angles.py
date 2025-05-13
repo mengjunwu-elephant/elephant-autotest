@@ -19,9 +19,8 @@ class TestSetGripperAngles(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestMyHand() #实例化夹爪
+        cls.device = TestMyHand()  # 实例化夹爪
         cls.logger.info("初始化完成，接口测试开始")
-
 
     # 清理测试环境
     @classmethod
@@ -33,8 +32,7 @@ class TestSetGripperAngles(unittest.TestCase):
     def tearDown(self):
         sleep(5)
 
-
-    @data(*[case for case in cases if case.get("test_type") == "normal"]) #筛选有效等价类用例
+    @data(*[case for case in cases if case.get("test_type") == "normal"])  # 筛选有效等价类用例
     def test_set_gripper_angles(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -42,19 +40,18 @@ class TestSetGripperAngles(unittest.TestCase):
         self.logger.debug('test_angles:{}'.format(case['angles']))
         self.logger.debug('test_speed:{}'.format(case['speed']))
         # 请求发送
-        set_res = self.device.m.set_gripper_angles(eval(case["angles"]),case["speed"])
+        set_res = self.device.m.set_gripper_angles(eval(case["angles"]), case["speed"])
         sleep(3)
         get_res = self.device.m.get_gripper_angles()
-        # 请求结果类型断言
-        if type(set_res) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(set_res)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(set_res) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(set_res)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], set_res)
-            self.assertEqual(get_res,eval(case["angles"]))
+            self.assertEqual(get_res, eval(case["angles"]))
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
             self.logger.debug('期望数据：{}'.format(case['expect_data']))
@@ -65,17 +62,17 @@ class TestSetGripperAngles(unittest.TestCase):
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
-
-    @data(*[case for case in cases if case.get("test_type") == "exception"]) #筛选无效等价类用例
-    def test_out_limit(self,case):
+    @data(*[case for case in cases if case.get("test_type") == "exception"])  # 筛选无效等价类用例
+    def test_out_limit(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_speeds:{}'.format(case['speed']))
         # 请求发送
         try:
-            with self.assertRaises(ValueError, msg="用例{}未触发value错误，角度值为{}".format(case['title'], case['angles'])):
-                self.device.m.set_gripper_angles(eval(case["angles"]),case["speed"])
+            with self.assertRaises(ValueError,
+                                   msg="用例{}未触发value错误，角度值为{}".format(case['title'], case['angles'])):
+                self.device.m.set_gripper_angles(eval(case["angles"]), case["speed"])
         except AssertionError:
             self.logger.error("断言失败：用例{}未触发异常".format(case['title']))
             raise  # 重新抛出异常，让测试框架捕获
@@ -86,7 +83,3 @@ class TestSetGripperAngles(unittest.TestCase):
             self.logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
-
-
-
-

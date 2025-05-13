@@ -19,11 +19,10 @@ class TestSetGripperJointCalibrate(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestMyHand() #实例化夹爪
-        cls.device.m.set_gripper_joint_angle(4,100) #放大1关节零位运动范围
+        cls.device = TestMyHand()  # 实例化夹爪
+        cls.device.m.set_gripper_joint_angle(4, 100)  # 放大1关节零位运动范围
         sleep(1)
         cls.logger.info("初始化完成，接口测试开始")
-
 
     # 清理测试环境
     @classmethod
@@ -31,8 +30,7 @@ class TestSetGripperJointCalibrate(unittest.TestCase):
         cls.device.m.close()
         cls.logger.info("环境清理完成，接口测试结束")
 
-
-    @data(*[case for case in cases if case.get("test_type") == "normal"]) #筛选有效等价类用例
+    @data(*[case for case in cases if case.get("test_type") == "normal"])  # 筛选有效等价类用例
     def test_set_gripper_joint_calibration(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -41,14 +39,13 @@ class TestSetGripperJointCalibrate(unittest.TestCase):
         # 请求发送
         set_res = self.device.m.set_gripper_joint_calibration(case["joint"])
         sleep(3)
-        # 请求结果类型断言
-        if type(set_res) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(set_res)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(set_res) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(set_res)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], set_res)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
@@ -60,16 +57,16 @@ class TestSetGripperJointCalibrate(unittest.TestCase):
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
-
-    @data(*[case for case in cases if case.get("test_type") == "exception"]) #筛选无效等价类用例
-    def test_out_limit(self,case):
+    @data(*[case for case in cases if case.get("test_type") == "exception"])  # 筛选无效等价类用例
+    def test_out_limit(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_joints:{}'.format(case['joint']))
         # 请求发送
         try:
-            with self.assertRaises(ValueError, msg="用例{}未触发value错误，joint值为{}".format(case['title'], case['joint'])):
+            with self.assertRaises(ValueError,
+                                   msg="用例{}未触发value错误，joint值为{}".format(case['title'], case['joint'])):
                 self.device.m.set_gripper_joint_calibration(int(case['joint']))
         except AssertionError:
             self.logger.error("断言失败：用例{}未触发异常".format(case['title']))
@@ -81,7 +78,3 @@ class TestSetGripperJointCalibrate(unittest.TestCase):
             self.logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
-
-
-
-

@@ -17,16 +17,14 @@ class TestGetGripperAngles(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestMyHand() #实例化夹爪
+        cls.device = TestMyHand()  # 实例化夹爪
         cls.logger.info("初始化完成，接口测试开始")
-
 
     # 清理测试环境
     @classmethod
     def tearDownClass(cls):
         cls.device.m.close()
         cls.logger.info("环境清理完成，接口测试结束")
-
 
     @data(*cases)
     def test_get_gripper_angles(self, case):
@@ -35,15 +33,13 @@ class TestGetGripperAngles(unittest.TestCase):
         self.logger.debug('test_api:{}'.format(case['api']))
         # 请求发送
         response = self.device.m.get_gripper_angles()
-
-        # 请求结果类型断言
-        if type(response) == list:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(response) == list:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
+            # 请求结果断言
             self.assertEqual(eval(case['expect_data']), response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
@@ -54,4 +50,3 @@ class TestGetGripperAngles(unittest.TestCase):
             self.logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
-

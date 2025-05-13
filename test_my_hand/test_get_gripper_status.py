@@ -19,14 +19,13 @@ class TestGetGripperStatus(unittest.TestCase):
     # 初始化测试环境
     @classmethod
     def setUpClass(cls):
-        cls.device = TestMyHand() #实例化夹爪
+        cls.device = TestMyHand()  # 实例化夹爪
         cls.logger.info("初始化完成，接口测试开始")
-
 
     # 清理测试环境
     @classmethod
     def tearDownClass(cls):
-        cls.device.go_zero() #回到零位
+        cls.device.go_zero()  # 回到零位
         cls.device.m.close()
         cls.logger.info("环境清理完成，接口测试结束")
 
@@ -41,16 +40,15 @@ class TestGetGripperStatus(unittest.TestCase):
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_parameters:{}'.format(case['parameter']))
         # 请求发送
-        self.device.m.set_gripper_angles([10,60,10,10,10,10],5)
+        self.device.m.set_gripper_angles([10, 60, 10, 10, 10, 10], 5)
         response = self.device.m.get_gripper_status()
-        # 请求结果类型断言
-        if type(response) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(response) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
@@ -72,15 +70,13 @@ class TestGetGripperStatus(unittest.TestCase):
         # 请求发送
         sleep(5)
         response = self.device.m.get_gripper_status()
-
-        # 请求结果类型断言
-        if type(response) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(response) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
@@ -104,15 +100,13 @@ class TestGetGripperStatus(unittest.TestCase):
         self.device.m.set_gripper_angles([30, 70, 70, 90, 70, 70], 100)
         sleep(3)
         response = self.device.m.get_gripper_status()
-
-        # 请求结果类型断言
-        if type(response) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(response) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')
@@ -134,15 +128,13 @@ class TestGetGripperStatus(unittest.TestCase):
         # 请求发送
         input("请取下夹爪夹取的物体后，点击回车开始测试")
         response = self.device.m.get_gripper_status()
-
-        # 请求结果类型断言
-        if type(response) == int:
-            self.logger.debug('请求类型断言成功')
-        else:
-            self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(response) == int:
+                self.logger.debug('请求类型断言成功')
+            else:
+                self.logger.debug('请求类型断言失败，实际类型为{}'.format(type(response)))
+            # 请求结果断言
             self.assertEqual(case['expect_data'], response)
         except AssertionError as e:
             self.logger.exception('请求结果断言失败')

@@ -1,5 +1,6 @@
 import unittest
 from ddt import ddt, data
+from pymycobot.error import MercuryDataException
 
 from common1.test_data_handler import get_test_data_from_excel
 from common1 import logger
@@ -125,7 +126,7 @@ class TestSetLimitSwitch(unittest.TestCase):
         self.logger.debug('test_parameter_2:{}'.format(case['parameter_2']))
         # 请求发送
         try:
-            with self.assertRaises(ValueError,
+            with self.assertRaises(MercuryDataException,
                                    msg="用例{}未触发value错误，位置超差值为{}{}".format(case['title'], case['parameter_1'],case['parameter_2'])):
                 self.device.ml.set_limit_switch(case['parameter_1'], case['parameter_2'])
                 self.device.mr.set_limit_switch(case['parameter_1'], case['parameter_2'])
@@ -160,16 +161,6 @@ class TestSetLimitSwitch(unittest.TestCase):
         l_get_res = self.device.ml.get_limit_switch()
         r_get_res = self.device.mr.get_limit_switch()
         try:
-            # 请求结果类型断言
-            if type(l_response) == list:
-                self.logger.debug('左臂请求类型断言成功')
-            else:
-                self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_get_res)))
-            if type(r_response) == list:
-                self.logger.debug('右臂请求类型断言成功')
-            else:
-                self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_get_res)))
-
             # 请求结果断言
             self.assertEqual(eval(case['r_expect_data']), r_get_res)
             self.assertEqual(eval(case['l_expect_data']), l_get_res)

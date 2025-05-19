@@ -35,6 +35,11 @@ class TestClearErrorInformation(unittest.TestCase):
         cls.device.ml.power_off()
         cls.logger.info("环境清理完成，接口测试结束")
 
+    def tearDown(self):
+        self.device.ml.clear_error_information()
+        self.device.mr.clear_error_information()
+        self.device.go_zero()
+
     @data(*[case for case in cases if case.get("test_type") == "normal1"])
     def test_clear_error_information1(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
@@ -42,9 +47,9 @@ class TestClearErrorInformation(unittest.TestCase):
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_parameter:{}'.format(case['parameter']))
         # 使机械臂位于奇异点，并发送坐标
-        self.device.ml.send_angle(6,0,self.device.speed)
-        self.device.mr.send_angle(6,0,self.device.speed)
-        self.device.ml.send_coord(3,300,self.device.speed)
+        self.device.ml.send_angles([0, 0, 0, -20, 0, 0, 0], self.device.speed)
+        self.device.mr.send_angles([0, 0, 0, -20, 0, 180, 0], self.device.speed)
+        self.device.ml.send_coord(3, 300, self.device.speed)
         self.device.mr.send_coord(3, 300, self.device.speed)
         # 左臂请求发送
         l_response = self.device.ml.clear_error_information()

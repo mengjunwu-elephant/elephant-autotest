@@ -8,11 +8,11 @@ from common1 import logger
 from settings import TestMercury
 
 # 从Excel中提取数据
-cases = get_test_data_from_excel(TestMercury.TEST_DATA_FILE, "send_angle")
+cases = get_test_data_from_excel(TestMercury.TEST_DATA_FILE, "send_coords")
 
 
 @ddt
-class TestSendAngle(unittest.TestCase):
+class TestSendCoords(unittest.TestCase):
     # 实例化日志模块
     logger = logger
 
@@ -37,14 +37,11 @@ class TestSendAngle(unittest.TestCase):
         cls.device.ml.power_off()
         cls.logger.info("环境清理完成，接口测试结束")
 
-    def tearDown(self):
-        self.device.go_zero()
-        self.device.mr.send_angle(11,0,50)
-        self.device.mr.send_angle(12, 0, 50)
-        self.device.mr.send_angle(13, 0, 50)
+    def setUp(self):
+        self.device.init_coords()
 
     @data(*[case for case in cases if case.get("test_type") == "normal"])
-    def test_send_angle_left(self, case):
+    def test_send_coords_left(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
@@ -52,7 +49,7 @@ class TestSendAngle(unittest.TestCase):
         self.logger.debug('test_parameter_1:{}'.format(case['parameter']))
         self.logger.debug('test_parameter_2:{}'.format(case['speed']))
         # 左臂请求发送
-        l_response = self.device.ml.send_angle(case['joint'],case["parameter"],case["speed"])
+        l_response = self.device.ml.send_coords(case['joint'],case["parameter"],case["speed"])
         try:
             # 请求结果类型断言
             if type(l_response) == int:
@@ -72,7 +69,7 @@ class TestSendAngle(unittest.TestCase):
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
     @data(*[case for case in cases if case.get("test_type") in {"normal","right"}])
-    def test_send_angle_right(self, case):
+    def test_send_coords_right(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
@@ -80,7 +77,7 @@ class TestSendAngle(unittest.TestCase):
         self.logger.debug('test_parameter_1:{}'.format(case['parameter']))
         self.logger.debug('test_parameter_2:{}'.format(case['speed']))
         # 右臂请求发送
-        r_response = self.device.mr.send_angle(case['joint'],case["parameter"],case["speed"])
+        r_response = self.device.mr.send_coords(case['joint'],case["parameter"],case["speed"])
         try:
             # 请求结果类型断言
             if type(r_response) == int:
@@ -112,9 +109,9 @@ class TestSendAngle(unittest.TestCase):
             with self.assertRaises(MercuryDataException,
                                    msg="用例{}未触发value错误，角度，速度为{}{}".format(case['title'], case['parameter'],case['speed'])):
                 # 左臂请求发送
-                self.device.ml.send_angle(case['joint'],case["parameter"], case["speed"])
+                self.device.ml.send_coords(case['joint'],case["parameter"], case["speed"])
                 # 右臂请求发送
-                self.device.mr.send_angle(case['joint'],case["parameter"], case["speed"])
+                self.device.mr.send_coords(case['joint'],case["parameter"], case["speed"])
         except AssertionError:
             self.logger.error("断言失败：用例{}未触发异常".format(case['title']))
             raise  # 重新抛出异常，让测试框架捕获

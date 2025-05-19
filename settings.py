@@ -40,12 +40,16 @@ class TestMercury:
     TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mercury.xlsx')
 
     def __init__(self, left_port="/dev/left_arm", right_port="/dev/right_arm"):
-        self.ml = Mercury(left_port)
-        self.mr = Mercury(right_port)
+        self.ml = Mercury(left_port,save_serial_log=1)
+        self.mr = Mercury(right_port,save_serial_log=1)
 
     def go_zero(self):
         self.ml.send_angles(self.init_angles, self.speed)
         self.mr.send_angles(self.init_angles, self.speed)
+
+    def init_coords(self):
+        self.ml.send_angles(self.coords_init_angles, self.speed)
+        self.mr.send_angles(self.coords_init_angles, self.speed)
 
     def reset(self):
         self.mr.power_off()

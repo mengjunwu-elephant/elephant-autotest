@@ -45,9 +45,9 @@ class TestGetAngle(unittest.TestCase):
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_joint:{}'.format(case['joint']))
         # 左臂请求发送
-        l_response = self.device.ml.get_angle(eval(case["joint"]))
+        l_response = self.device.ml.get_angle(case["joint"])
         # 右臂请求发送
-        r_response = self.device.mr.get_angle(eval(case["joint"]))
+        r_response = self.device.mr.get_angle(case["joint"])
         try:
             # 请求结果类型断言
             if type(l_response) == float:
@@ -78,7 +78,7 @@ class TestGetAngle(unittest.TestCase):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
-        self.logger.debug('test_id:{}'.format(case['id']))
+        self.logger.debug('test_joint:{}'.format(case['joint']))
         # 请求发送
         try:
             with self.assertRaises(MercuryDataException, msg="用例{}未触发value错误，joint值为{}".format(case['title'], case['joint'])):

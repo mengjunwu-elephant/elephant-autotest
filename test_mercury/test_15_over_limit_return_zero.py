@@ -54,24 +54,23 @@ class TestOverLimitReturnZero(unittest.TestCase):
         sleep(2)
         # 判断机械臂是否回到零位
         try:
-            self.device.ml.is_in_position([0, 0, 0, 0, 0, 90, 0], l_get_res) and self.device.mr.is_in_position([0, 0, 0, 0, 0, 90, 0],
-                                                                                           r_get_res) == 1
+            self.device.ml.is_in_position([0, 0, 0, 0, 0, 90, 0], 0) and self.device.mr.is_in_position([0, 0, 0, 0, 0, 90, 0],
+                                                                                           0) == 1
         except Exception as e:
             self.logger.debug("左臂未回到零位，当前角度值为{}".format(l_get_res))
             self.logger.debug("右臂未回到零位，当前角度值为{}".format(r_get_res))
             raise e
-        # 请求结果类型断言
-        if type(l_response) == int:
-            self.logger.debug('左臂请求类型断言成功')
-        else:
-            self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
-        if type(r_response) == int:
-            self.logger.debug('右臂请求类型断言成功')
-        else:
-            self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
-
-        # 请求结果断言
         try:
+            # 请求结果类型断言
+            if type(l_response) == int:
+                self.logger.debug('左臂请求类型断言成功')
+            else:
+                self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
+            if type(r_response) == int:
+                self.logger.debug('右臂请求类型断言成功')
+            else:
+                self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
+            # 请求结果断言
             self.assertEqual(case['r_expect_data'], r_response)
             self.assertEqual(case['l_expect_data'], l_response)
         except AssertionError as e:

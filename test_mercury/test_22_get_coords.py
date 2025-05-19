@@ -35,7 +35,6 @@ class TestGetCoords(unittest.TestCase):
         cls.logger.info("环境清理完成，接口测试结束")
 
 
-    # @data(*[case for case in cases if case.get("test_type") == "normal"])  # 筛选有效等价类用例
     @data(*cases)
     def test_get_coords(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
@@ -47,11 +46,11 @@ class TestGetCoords(unittest.TestCase):
         r_response = self.device.mr.get_coords(eval(case['parameter']))
 
         # 请求结果类型断言
-        if type(l_response) == int:
+        if type(l_response) == list:
             self.logger.debug('左臂请求类型断言成功')
         else:
             self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
-        if type(r_response) == int:
+        if type(r_response) == list:
             self.logger.debug('右臂请求类型断言成功')
         else:
             self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))

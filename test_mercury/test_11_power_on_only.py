@@ -1,5 +1,7 @@
 import unittest
 from ddt import ddt, data
+from pymycobot.error import MercuryRobotException
+
 from common1.test_data_handler import get_test_data_from_excel
 from common1 import logger
 from settings import TestMercury
@@ -27,11 +29,12 @@ class TestPowerOnOnly(unittest.TestCase):
         下电顺序为先右臂下电，后左臂下电
         :return:
         """
+        cls.device.go_zero()
         cls.device.mr.power_off()
         cls.device.ml.power_off()
         cls.logger.info("环境清理完成，接口测试结束")
 
-    def tearDown(self):
+    def setUp(self):
         self.device.power_off()
 
     @data(*[case for case in cases if case.get("test_type") == "normal"])
@@ -41,7 +44,7 @@ class TestPowerOnOnly(unittest.TestCase):
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_parameter:{}'.format(case['parameter']))
         # 左臂请求发送
-        input("请确认末端颜色是否由黄变绿，按回车键继续测试")
+        input(print("请确认末端颜色是否由黄变绿，按回车键继续测试"))
         l_response = self.device.ml.power_on_only()
 
         # 右臂请求发送
@@ -81,18 +84,18 @@ class TestPowerOnOnly(unittest.TestCase):
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_parameter:{}'.format(case['parameter']))
         # 左臂请求发送
-        input("请拍下急停，按回车键继续测试")
+        input(print("请拍下急停，按回车键继续测试"))
         l_response = self.device.ml.power_on_only()
 
         # 右臂请求发送
         r_response = self.device.mr.power_on_only()
-        input("请松开急停，按回车键继续测试")
+        input(print("请松开急停，按回车键继续测试"))
         # 请求结果类型断言
-        if type(l_response) == int:
+        if type(l_response) is None:
             self.logger.debug('左臂请求类型断言成功')
         else:
             self.logger.debug('左臂请求类型断言失败，实际类型为{}'.format(type(l_response)))
-        if type(r_response) == int:
+        if type(r_response) is None:
             self.logger.debug('右臂请求类型断言成功')
         else:
             self.logger.debug('右臂请求类型断言失败，实际类型为{}'.format(type(r_response)))
@@ -114,26 +117,28 @@ class TestPowerOnOnly(unittest.TestCase):
             self.logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
 
-    @data(*[case for case in cases if case.get("test_type") == "emergency"])
-    def test_emergency(self, case):
+    @data(*[case for case in cases if case.get("test_type") == "move"])
+    def test_move(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
         self.logger.debug('test_api:{}'.format(case['api']))
         self.logger.debug('test_parameter:{}'.format(case['parameter']))
         # 左臂请求发送
 
-        l_response = self.device.ml.power_on_only()
+        self.device.ml.power_on_only()
 
         # 右臂请求发送
-        r_response = self.device.mr.power_on_only()
+        self.device.mr.power_on_only()
 
         # 左右臂运动控制
-        input("请观察机械臂是否运动")
+
         l_move_res = self.device.ml.send_angle(1,10,self.device.speed)
         r_move_res = self.device.mr.send_angle(1, 10, self.device.speed)
-
-        # 请求结果断言
+        _assert = input(print("请观察刚刚机械臂是否运动,如果运动输入1，不运动输入任意数字点击回车继续测试"))
         try:
+            if _assert == "1":
+                raise MercuryRobotException
+            # 请求结果断言
             self.assertEqual(case['r_expect_data'], r_move_res)
             self.assertEqual(case['l_expect_data'], l_move_res)
         except AssertionError as e:
@@ -143,6 +148,9 @@ class TestPowerOnOnly(unittest.TestCase):
             self.logger.debug('左臂实际结果：{}'.format(l_move_res))
             self.logger.debug('右臂实际结果：{}'.format(r_move_res))
             raise e
+        except MercuryRobotException as f:
+            self.logger.exception('请求结果断言失败,机械臂power_on_only状态下可以运动')
+            raise f
         else:
             self.logger.info('请求结果断言成功,用例【{}】测试成功'.format(case['title']))
         finally:

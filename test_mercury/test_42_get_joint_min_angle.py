@@ -1,8 +1,6 @@
 import unittest
 from time import sleep
-
 from ddt import ddt, data
-
 from common1.test_data_handler import get_test_data_from_excel
 from common1 import logger
 from settings import TestMercury
@@ -41,7 +39,6 @@ class TestGetJointMinAngle(unittest.TestCase):
         sleep(3)
 
     @data(*[case for case in cases if case.get("test_type") == "normal"])  # 筛选有效等价类用例
-    @data(*cases)
     def test_get_joint_min_angle(self, case):
         self.logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -49,7 +46,7 @@ class TestGetJointMinAngle(unittest.TestCase):
         self.logger.debug('test_id:{}'.format(case['id']))
         # 左臂请求发送
         l_response = self.device.ml.get_joint_min_angle(case["id"])
-        self.device.ml.send_angle(case["id"], case["l_expect_data"], self.speed)  # 使机械臂运动到软件限位，判断是否能够到达
+        self.device.ml.send_angle(case["id"], case["l_expect_data"], self.device.speed)  # 使机械臂运动到软件限位，判断是否能够到达
         sleep(3)
         l_get_res = self.device.is_in_position(case["l_expect_data"], self.device.ml.get_angle(case["id"]))
         # 右臂请求发送

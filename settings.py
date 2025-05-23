@@ -1,7 +1,7 @@
 import os
 from Myhand.MyHand import MyGripper_H100
 from elegripper.elegripper import Gripper
-from pymycobot import Mercury
+from pymycobot import *
 
 # 项目路径
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -34,7 +34,7 @@ class TestMercury:
     # 机械臂运动数据
     speed = 50
     init_angles = [0, 0, 0, 0, 0, 90, 0]
-    coords_init_angles = [0, -20, 0, -90, 0, 90, 0]
+    coords_init_angles = [0, 20, 0, -90, 0, 90, 0]
 
     # 测试数据配置
     TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mercury.xlsx')
@@ -144,3 +144,14 @@ class TestMyHand:
     def set_default_speed(self):
         for i in range(6):
             self.m.set_gripper_joint_speed(i + 1, 100)
+
+
+# mycobot280配置
+class TestMycobot280:
+    # 机械臂速度
+    speed = 50
+    # 测试数据配置
+    TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mycobot280.xlsx.xlsx')
+
+    def __init__(self, port="com3", baudrate=115200):
+        self.mc = MyCobot280(port, baudrate=baudrate)

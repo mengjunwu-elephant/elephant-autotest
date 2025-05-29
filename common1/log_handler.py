@@ -1,7 +1,7 @@
 import logging
 
 
-def get_logger(name, filename, mode='a', encoding='utf-8', fmt=None, debug=True):
+def get_logger(name, filename, mode='a', encoding='utf-8', fmt=None, debug=1):
     """
     :param name: 日志器的名字
     :param filename: 日志文件名
@@ -13,6 +13,8 @@ def get_logger(name, filename, mode='a', encoding='utf-8', fmt=None, debug=True)
     """
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
+    if logger.handlers:
+        return logger
     # 文件处理器的等级一般情况一定比控制高
     if debug:
         file_level = logging.DEBUG
@@ -36,7 +38,7 @@ def get_logger(name, filename, mode='a', encoding='utf-8', fmt=None, debug=True)
 
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
-
+    logger.propagate = False
     return logger
 
 

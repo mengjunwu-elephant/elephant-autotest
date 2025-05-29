@@ -11,6 +11,7 @@ CASES_DIR = {
     "1": "test_mercury",
     "2": "test_pro_gripper",
     "3": "test_my_hand",
+    "4": "test_mercury_pro_gripper",
 }
 
 # 日志配置
@@ -35,13 +36,23 @@ class TestMercury:
     speed = 50
     init_angles = [0, 0, 0, 0, 0, 90, 0]
     coords_init_angles = [0, 20, 0, -90, 0, 90, 0]
+    # 七轴软件限位
+    max_limit = [165,120,165,1,165,255,165]
+    min_limit = [-165,-50,-165,-165,-165,-75,-165]
+    ex_max_limit = [0,245,160]
+    ex_min_limit = [-55,-70,-160]
 
     # 测试数据配置
     TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mercury.xlsx')
+    PRO_GRIPPER_TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mercury_pro_gripper.xlsx')
 
     def __init__(self, left_port="/dev/left_arm", right_port="/dev/right_arm"):
         self.ml = Mercury(left_port,save_serial_log=1)
         self.mr = Mercury(right_port,save_serial_log=1)
+
+    def close(self):
+        self.ml.close()
+        self.mr.close()
 
     def go_zero(self):
         self.ml.send_angles(self.init_angles, self.speed)
@@ -67,18 +78,28 @@ class TestMercury:
         self.mr.power_off()
         self.ml.power_off()
 
+    def set_default_torque_comp(self):
+        torque_comp = [0,0,0,0,10,30,30]
+        for i,c in enumerate(torque_comp):
+            self.ml.set_torque_comp(i+1,c)
+            self.mr.set_torque_comp(i+1,c)
+
+    def set_default_pos_over_shoot(self):
+        self.ml.set_pos_over_shoot(50)
+        self.mr.set_pos_over_shoot(50)
 
     @staticmethod
     def is_in_position(target, current):
         count = 0
-        if isinstance(target, int):
-            if abs(current) - 2 <= abs(target) <= abs(current) + 2:
+        if isinstance(target, (float,int)):
+            if abs(current) - 1 <= abs(target) <= abs(current) + 1:
                 return 1
             else:
                 return -1
         else:
             for i, c in zip(target, current):
-                if abs(i) - 5 <= abs(c) <= abs(i) + 5:
+                if abs(i) - 3 <= abs(c) <= abs(i) + 3:
+                    count += 1
                     if count == len(target):
                         return 1
                 else:

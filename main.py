@@ -1,5 +1,7 @@
 import unittest
+
 from BeautifulReport import BeautifulReport
+
 import settings
 from settings import CASES_DIR
 

@@ -1,5 +1,5 @@
-from .log_handler import get_logger
 import settings
+from .log_handler import get_logger
 
 # 实例化日志模块
 

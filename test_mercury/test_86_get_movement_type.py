@@ -1,8 +1,9 @@
 import unittest
+
 from ddt import ddt, data
 
-from common1.test_data_handler import get_test_data_from_excel
 from common1 import logger
+from common1.test_data_handler import get_test_data_from_excel
 from settings import TestMercury
 
 # 从Excel中提取数据

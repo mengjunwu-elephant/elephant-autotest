@@ -1,7 +1,9 @@
 import os
+
+from pymycobot import *
+
 from Myhand.MyHand import MyGripper_H100
 from elegripper.elegripper import Gripper
-from pymycobot import *
 
 # 项目路径
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

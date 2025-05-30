@@ -49,7 +49,7 @@ class TestSetGripperJointCww(unittest.TestCase):
             logger.exception('请求结果断言失败')
             logger.debug('期望数据：{}'.format(case['expect_data']))
             logger.debug('实际结果：{}'.format(set_res))
-            raise e
+            self.fail("用例【{}】断言失败".format(case['title']))
         else:
             logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:

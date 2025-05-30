@@ -1,10 +1,11 @@
 import unittest
+
 from ddt import ddt, data
 from pymycobot.error import MercuryDataException
-from common1.test_data_handler import get_test_data_from_excel
+
 from common1 import logger
+from common1.test_data_handler import get_test_data_from_excel
 from settings import TestMercury
-from time import sleep
 
 # 从Excel中提取数据
 cases = get_test_data_from_excel(TestMercury.TEST_DATA_FILE, "resume")

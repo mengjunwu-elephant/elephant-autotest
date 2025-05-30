@@ -1,5 +1,3 @@
-from time import sleep
-
 from Myhand.MyHand import MyGripper_H100
 
 m = MyGripper_H100("com3", debug=1, recv_timeout=20)

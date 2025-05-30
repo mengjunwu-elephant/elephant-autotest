@@ -2,9 +2,9 @@ import unittest
 from time import sleep
 
 from ddt import ddt, data
-import settings
-from common1.test_data_handler import get_test_data_from_excel
+
 from common1 import logger
+from common1.test_data_handler import get_test_data_from_excel
 from settings import TestMyHand
 
 # 从Excel中提取数据
@@ -53,7 +53,7 @@ class TestGetGripperStatus(unittest.TestCase):
             logger.exception('请求结果断言失败')
             logger.debug('期望数据：{}'.format(case['expect_data']))
             logger.debug('实际结果：{}'.format(response))
-            raise e
+            self.fail("用例【{}】断言失败".format(case['title']))
         else:
             logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
@@ -81,7 +81,7 @@ class TestGetGripperStatus(unittest.TestCase):
             logger.exception('请求结果断言失败')
             logger.debug('期望数据：{}'.format(case['expect_data']))
             logger.debug('实际结果：{}'.format(response))
-            raise e
+            self.fail("用例【{}】断言失败".format(case['title']))
         else:
             logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
@@ -111,7 +111,7 @@ class TestGetGripperStatus(unittest.TestCase):
             logger.exception('请求结果断言失败')
             logger.debug('期望数据：{}'.format(case['expect_data']))
             logger.debug('实际结果：{}'.format(response))
-            raise e
+            self.fail("用例【{}】断言失败".format(case['title']))
         else:
             logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:
@@ -139,7 +139,7 @@ class TestGetGripperStatus(unittest.TestCase):
             logger.exception('请求结果断言失败')
             logger.debug('期望数据：{}'.format(case['expect_data']))
             logger.debug('实际结果：{}'.format(response))
-            raise e
+            self.fail("用例【{}】断言失败".format(case['title']))
         else:
             logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))
         finally:

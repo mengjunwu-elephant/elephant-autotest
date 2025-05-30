@@ -52,8 +52,8 @@ class TestSetGripperJointAngle(unittest.TestCase):
             self.assertEqual(self.get_res, case["angle"])
         except AssertionError as e:
             logger.exception('请求结果断言失败')
-            logger.debug('期望数据：{}'.format(case['expect_data']))
-            logger.debug('实际结果：{}'.format(self.set_res))
+            logger.debug('期望数据：{}'.format(case['angle']))
+            logger.debug('实际结果：{}'.format(self.get_res))
             self.fail("用例【{}】断言失败".format(case['title']))
         else:
             logger.info('请求结果断言成功，用例【{}】测试成功'.format(case['title']))

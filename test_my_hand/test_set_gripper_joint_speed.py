@@ -10,7 +10,8 @@ cases = get_test_data_from_excel(TestMyHand.TEST_DATA_FILE, "set_gripper_joint_s
 
 
 @ddt
-class TestSetGripperJointP(unittest.TestCase):
+class TestSetGripperJointSpeed(unittest.TestCase):
+
 
 
     # 初始化测试环境

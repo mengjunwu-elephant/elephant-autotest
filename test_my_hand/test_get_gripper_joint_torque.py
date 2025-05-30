@@ -10,7 +10,7 @@ cases = get_test_data_from_excel(TestMyHand.TEST_DATA_FILE, "get_gripper_joint_t
 
 
 @ddt
-class TestGetGripperJointMiniPressure(unittest.TestCase):
+class TestGetGripperJointTorque(unittest.TestCase):
 
 
     # 初始化测试环境

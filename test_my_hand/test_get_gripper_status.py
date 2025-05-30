@@ -32,7 +32,6 @@ class TestGetGripperStatus(unittest.TestCase):
         sleep(3)
 
     @data(*[case for case in cases if case.get("test_type") == 0])
-    @data(*cases)
     def test_get_gripper_status_0(self, case):
         logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -60,7 +59,6 @@ class TestGetGripperStatus(unittest.TestCase):
             logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
     @data(*[case for case in cases if case.get("test_type") == 1])
-    @data(*cases)
     def test_get_gripper_status_1(self, case):
         logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -88,7 +86,6 @@ class TestGetGripperStatus(unittest.TestCase):
             logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
     @data(*[case for case in cases if case.get("test_type") == 2])
-    @data(*cases)
     def test_get_gripper_status_2(self, case):
         logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息
@@ -118,7 +115,6 @@ class TestGetGripperStatus(unittest.TestCase):
             logger.info('》》》》》用例【{}】测试完成《《《《《'.format(case['title']))
 
     @data(*[case for case in cases if case.get("test_type") == 3])
-    @data(*cases)
     def test_get_gripper_status_3(self, case):
         logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息

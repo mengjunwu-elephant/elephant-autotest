@@ -26,7 +26,6 @@ class TestGetGripperJointCww(unittest.TestCase):
         logger.info("环境清理完成，接口测试结束")
 
     @data(*[case for case in cases if case.get("test_type") == "normal"])  # 筛选无效等价类用例
-    @data(*cases)
     def test_get_gripper_joint_cww(self, case):
         logger.info('》》》》》用例【{}】开始测试《《《《《'.format(case['title']))
         # 调试信息

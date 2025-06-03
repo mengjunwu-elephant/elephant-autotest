@@ -1,16 +1,18 @@
 from Myhand.MyHand import MyGripper_H100
 
-m = MyGripper_H100("com3", debug=1, recv_timeout=20)
+m = MyGripper_H100("com3",id=10, debug=1, recv_timeout=20)
 
 # print(m.set_gripper_baud(0))
-# print(m.get_gripper_Id())
+m.set_gripper_Id(14)
+print(m.get_gripper_Id())
+print(m.get_gripper_baud())
 # print(m.set_gripper_joint_calibration(2))
 
 # for i in range(6):
 #     m.set_gripper_joint_D(4,150)
 #     print(m.get_gripper_joint_D(i + 1))
 # while 1:
-m.set_gripper_angles([30, 60, 60, 30, 30, 30], 100)
+# m.set_gripper_angles([30, 60, 60, 30, 30, 30], 100)
 #     sleep(2)
 #     m.set_gripper_angles([0, 0, 0, 0, 0, 0], 1)
 #     sleep(2)
@@ -43,3 +45,4 @@ m.set_gripper_angles([30, 60, 60, 30, 30, 30], 100)
 # m.set_gripper_joint_mini_pressure(2,24)
 # m.set_gripper_joint_mini_pressure(4,24)
 # print(m.get_gripper_joint_mini_pressure(4))
+# m.set_gripper_Id(14)

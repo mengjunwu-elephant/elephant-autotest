@@ -11,9 +11,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # 产品名称
 CASES_DIR = {
     "1": "test_mercury",
-    "2": "test_pro_gripper",
-    "3": "test_my_hand",
-    "4": "test_mercury_pro_gripper",
+    "2": "test_mercury_pro_gripper",
+    "3": "test_mercury_my_hand",
+    "4": "test_pro_gripper",
+    "5": "test_my_hand",
+    "6": "test_mycobot_280",
 }
 
 # 日志配置
@@ -38,6 +40,7 @@ class TestMercury:
     speed = 50
     init_angles = [0, 0, 0, 0, 0, 90, 0]
     coords_init_angles = [0, 20, 0, -90, 0, 90, 0]
+
     # 七轴软件限位
     max_limit = [165,120,165,1,165,255,165]
     min_limit = [-165,-50,-165,-165,-165,-75,-165]
@@ -47,6 +50,7 @@ class TestMercury:
     # 测试数据配置
     TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mercury.xlsx')
     PRO_GRIPPER_TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mercury_pro_gripper.xlsx')
+    MY_HAND_TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mercury_my_hand.xlsx')
 
     def __init__(self, left_port="/dev/left_arm", right_port="/dev/right_arm"):
         self.ml = Mercury(left_port,save_serial_log=1)
@@ -107,6 +111,37 @@ class TestMercury:
                 else:
                     return -1
 
+    def set_default_p(self):
+        for i in range(6):
+            self.ml.set_hand_gripper_p(i + 1, 100)
+
+    def set_default_d(self):
+        for i in range(6):
+            self.ml.set_hand_gripper_d(i + 1, 120)
+
+    def set_default_i(self):
+        for i in range(6):
+            self.ml.set_hand_gripper_i(i + 1, 0)
+
+    def set_default_cw(self):
+        for i in range(6):
+            self.ml.set_hand_gripper_clockwise(i + 1, 5)
+
+    def set_default_cww(self):
+        for i in range(6):
+            self.ml.set_hand_gripper_counterclockwise(i + 1, 5)
+
+    def set_default_mini_pressure(self):
+        for i in range(6):
+            self.ml.set_hand_gripper_min_pressure(i + 1, 0)
+
+    def set_default_torque(self):
+        for i in range(6):
+            self.ml.set_hand_gripper_torque(i + 1, 100)
+
+    def set_default_speed(self):
+        for i in range(6):
+            self.ml.set_hand_gripper_speed(i + 1, 100)
 
 # Pro力控夹爪配置
 class TestProGripper:
@@ -171,10 +206,12 @@ class TestMyHand:
 
 # mycobot280配置
 class TestMycobot280:
-    # 机械臂速度
+    # 机械臂运动数据
     speed = 50
-    # 测试数据配置
-    TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mycobot280.xlsx.xlsx')
+    coords_init_angles = [0, 0, -90, 0, 0, 0]
 
-    def __init__(self, port="com3", baudrate=115200):
+    # 测试数据配置
+    TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mycobot_280.xlsx')
+
+    def __init__(self, port="com23", baudrate=115200):
         self.mc = MyCobot280(port, baudrate=baudrate)

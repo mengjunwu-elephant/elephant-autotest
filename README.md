@@ -157,7 +157,7 @@ import ddt
 
 ### 2.1 设置零位时，需将夹爪竖立放置
 
-<img src="img.png" alt="img.png" style="zoom: 25%;" />
+<img src=".\images\img.png" alt="img" style="zoom:25%;" />
 
 ### 2.2 目前用例覆盖率95%+，涉及运动指令，需观察夹爪角度以及速度是否运行正常，运动时是否抖动
 

@@ -16,6 +16,7 @@ CASES_DIR = {
     "4": "test_pro_gripper",
     "5": "test_my_hand",
     "6": "test_mycobot_280",
+    "7": "test_mycobot_320",
 }
 
 # 日志配置
@@ -215,3 +216,15 @@ class TestMycobot280:
 
     def __init__(self, port="com23", baudrate=115200):
         self.mc = MyCobot280(port, baudrate=baudrate)
+
+
+# mycobot320配置
+class TestMycobot320:
+    # 机械臂运动数据
+    speed = 50
+
+    # 测试数据配置
+    TEST_DATA_FILE = os.path.join(BASE_DIR, r'test_data/test_mycobot_320.xlsx')
+
+    def __init__(self, port="com23", baudrate=115200):
+        self.mc = MyCobot320(port, baudrate=baudrate)

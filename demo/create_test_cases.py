@@ -1,12 +1,13 @@
 import os
 import inspect
-from pymycobot import MyCobot280
+from pymycobot import *
+
 
 def get_get_methods(cls):
     """
     获取类中所有以 'get' 开头的方法名
     """
-    return [name for name, func in inspect.getmembers(cls, predicate=inspect.isfunction) if name.startswith("set")]
+    return [name for name, func in inspect.getmembers(cls, predicate=inspect.isfunction) if name.startswith("get")]
 
 def create_empty_test_files(methods, save_path):
     """
@@ -23,10 +24,10 @@ def create_empty_test_files(methods, save_path):
         print(f"✅ 创建空文件: {filepath}")
 
 def main(output_dir):
-    methods = get_get_methods(MyCobot280)
+    methods = get_get_methods(MyCobot320)
     create_empty_test_files(methods, output_dir)
 
 
 if __name__ == "__main__":
-    output_dir = "../test_mycobot_280"  # ✅ 可自定义路径
+    output_dir = "../test_mycobot_320"  # ✅ 可自定义路径
     main(output_dir)

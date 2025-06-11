@@ -1,11 +1,12 @@
 from Myhand.MyHand import MyGripper_H100
 
-m = MyGripper_H100("com3",id=10, debug=1, recv_timeout=20)
+m = MyGripper_H100("com14",id=14, debug=1, recv_timeout=20)
 
 # print(m.set_gripper_baud(0))
-m.set_gripper_Id(14)
+# m.set_gripper_Id(14)
 print(m.get_gripper_Id())
 print(m.get_gripper_baud())
+print(m.get_gripper_firmware_version())
 # print(m.set_gripper_joint_calibration(2))
 
 # for i in range(6):

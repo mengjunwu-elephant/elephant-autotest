@@ -1,5 +1,4 @@
 import os
-
 from pymycobot import *
 
 from Myhand.MyHand import MyGripper_H100

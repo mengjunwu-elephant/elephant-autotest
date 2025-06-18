@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/yty-interface_test.iml" filepath="$PROJECT_DIR$/.idea/yty-interface_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/elephant-autotest.iml" filepath="$PROJECT_DIR$/.idea/elephant-autotest.iml" />
     </modules>
   </component>
 </project>

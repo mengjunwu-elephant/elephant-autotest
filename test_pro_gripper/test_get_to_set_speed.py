@@ -32,7 +32,7 @@ class TestGetToSetSpeed(unittest.TestCase):
         logger.debug('test_api:{}'.format(case['api']))
         logger.debug('test_parameters:{}'.format(case['parameter']))
         # 请求发送
-        response = self.device.m.get_gripper_baud()
+        response = self.device.m.get_gripper_speed()
         try:
             # 请求结果类型断言
             if type(response) == int:

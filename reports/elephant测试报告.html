@@ -8,7 +8,6 @@
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.0.0-beta3/css/fontawesome.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/chosen/1.8.8.rc6/chosen.css" rel="stylesheet">
-
     <base target="_blank">
     <style type="text/css">
         h1,h2,h3,h4,h5,h6 {
@@ -7118,7 +7117,6 @@ body.skin-3 {
         </div>
     </div>
 </div>
-
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.2.2/echarts.min.js"></script>
@@ -7162,42 +7160,68 @@ body.skin-3 {
 
 
     var resultData = {
-    "testPass": 66,
+    "testPass": 202,
     "testResult": [
         {
-            "className": "TestGetCloseAngle",
-            "methodName": "test_get_close_angle_1",
-            "description": "正确获取夹爪关闭角度",
-            "spendTime": "0.0412 s",
+            "className": "TestGetFirmwareVersion",
+            "methodName": "test_get_firmware_version_1",
+            "description": "正确获取固件版本号",
+            "spendTime": "0.0442 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestGetFirmwareVersion",
-            "methodName": "test_get_firmware_version_1",
-            "description": "正确获取固件版本号",
-            "spendTime": "0.0453 s",
-            "status": "成功",
+            "className": "TestGetGripperAngles",
+            "methodName": "test_get_gripper_angles_1",
+            "description": "正确获取夹爪全角度",
+            "spendTime": "0.0466 s",
+            "status": "失败",
             "log": [
-                ""
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_angles.py\", line 43, in test_get_gripper_angles\n    self.assertEqual(eval(case['expect_data']), response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 1051, in assertListEqual\n    self.assertSequenceEqual(list1, list2, msg, seq_type=list)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 1033, in assertSequenceEqual\n    self.fail(msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: Lists differ: [0, 0, 0, 0, 0, 0] != [81, 92, 99, 2, 82, 50]\n\nFirst differing element 0:\n0\n81\n\n- [0, 0, 0, 0, 0, 0]\n+ [81, 92, 99, 2, 82, 50]\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_angles.py\", line 48, in test_get_gripper_angles\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【正确获取夹爪全角度】断言失败\n"
             ]
         },
         {
             "className": "TestGetGripperBaud",
             "methodName": "test_get_gripper_baud_1",
-            "description": "正确获取夹爪波特率",
-            "spendTime": "0.0432 s",
+            "description": "正确获取固件波特率",
+            "spendTime": "0.041 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestGetGripperCw",
-            "methodName": "test_get_gripper_baud_1",
-            "description": "正确获取夹爪顺时针可运行误差",
+            "className": "TestGetGripperID",
+            "methodName": "test_get_gripper_id_1",
+            "description": "正确获取固件ID号",
+            "spendTime": "0.0423 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCw",
+            "methodName": "test_get_gripper_joint_cw_1",
+            "description": "获取1关节cw值",
             "spendTime": "0.0435 s",
             "status": "成功",
             "log": [
@@ -7205,29 +7229,9 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestGetGripperCww",
-            "methodName": "test_get_gripper_cww_1",
-            "description": "正确获取夹爪逆时针可运行误差",
-            "spendTime": "0.0437 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestGetGripperD",
-            "methodName": "test_get_gripper_D_1",
-            "description": "正确获取夹爪D值",
-            "spendTime": "0.0445 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestGetGripperI",
-            "methodName": "test_get_gripper_baud_1",
-            "description": "正确读取夹爪I值",
+            "className": "TestGetGripperJointCw",
+            "methodName": "test_get_gripper_joint_cw_2",
+            "description": "获取2关节cw值",
             "spendTime": "0.045 s",
             "status": "成功",
             "log": [
@@ -7235,19 +7239,109 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetGripperID",
-            "methodName": "test_set_gripper_id_1",
-            "description": "正确设置固件ID号",
-            "spendTime": "0.0913 s",
+            "className": "TestGetGripperJointCw",
+            "methodName": "test_get_gripper_joint_cw_3",
+            "description": "获取3关节cw值",
+            "spendTime": "0.0462 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestGetGripperMinPressure",
-            "methodName": "test_get_gripper_min_pressure_1",
-            "description": "正确获取夹爪最小启动力",
+            "className": "TestGetGripperJointCw",
+            "methodName": "test_get_gripper_joint_cw_4",
+            "description": "获取4关节cw值",
+            "spendTime": "0.0453 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCw",
+            "methodName": "test_get_gripper_joint_cw_5",
+            "description": "获取5关节cw值",
+            "spendTime": "0.0456 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCw",
+            "methodName": "test_get_gripper_joint_cw_6",
+            "description": "获取6关节cw值",
+            "spendTime": "0.045 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCw",
+            "methodName": "test_out_limit_1",
+            "description": "获取7关节cw值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCw",
+            "methodName": "test_out_limit_2",
+            "description": "获取0关节cw值（超限）",
+            "spendTime": "0.000998 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCww",
+            "methodName": "test_get_gripper_joint_cww_1",
+            "description": "获取1关节cww值",
+            "spendTime": "0.042 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCww",
+            "methodName": "test_get_gripper_joint_cww_2",
+            "description": "获取2关节cww值",
+            "spendTime": "0.045 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCww",
+            "methodName": "test_get_gripper_joint_cww_3",
+            "description": "获取3关节cww值",
+            "spendTime": "0.0456 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCww",
+            "methodName": "test_get_gripper_joint_cww_4",
+            "description": "获取4关节cww值",
+            "spendTime": "0.0456 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCww",
+            "methodName": "test_get_gripper_joint_cww_5",
+            "description": "获取5关节cww值",
             "spendTime": "0.0458 s",
             "status": "成功",
             "log": [
@@ -7255,10 +7349,594 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestGetGripperP",
-            "methodName": "test_set_gripper_p_1",
-            "description": "正确获取夹爪P值",
-            "spendTime": "0.0431 s",
+            "className": "TestGetGripperJointCww",
+            "methodName": "test_get_gripper_joint_cww_6",
+            "description": "获取6关节cww值",
+            "spendTime": "0.046 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCww",
+            "methodName": "test_out_limit_1",
+            "description": "获取7关节cww值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointCww",
+            "methodName": "test_out_limit_2",
+            "description": "获取0关节cww值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointD",
+            "methodName": "test_get_gripper_joint_d_1",
+            "description": "获取1关节d值",
+            "spendTime": "0.0438 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointD",
+            "methodName": "test_get_gripper_joint_d_2",
+            "description": "获取2关节d值",
+            "spendTime": "0.0453 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointD",
+            "methodName": "test_get_gripper_joint_d_3",
+            "description": "获取3关节d值",
+            "spendTime": "0.0465 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointD",
+            "methodName": "test_get_gripper_joint_d_4",
+            "description": "获取4关节d值",
+            "spendTime": "0.0446 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointD",
+            "methodName": "test_get_gripper_joint_d_5",
+            "description": "获取5关节d值",
+            "spendTime": "0.0456 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointD",
+            "methodName": "test_get_gripper_joint_d_6",
+            "description": "获取6关节d值",
+            "spendTime": "0.0454 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointD",
+            "methodName": "test_out_limit_1",
+            "description": "获取7关节d值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointD",
+            "methodName": "test_out_limit_2",
+            "description": "获取0关节d值（超限）",
+            "spendTime": "0.00101 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointI",
+            "methodName": "test_get_gripper_joint_i_1",
+            "description": "获取1关节i值",
+            "spendTime": "0.0416 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointI",
+            "methodName": "test_get_gripper_joint_i_2",
+            "description": "获取2关节i值",
+            "spendTime": "0.0456 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointI",
+            "methodName": "test_get_gripper_joint_i_3",
+            "description": "获取3关节i值",
+            "spendTime": "0.0456 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointI",
+            "methodName": "test_get_gripper_joint_i_4",
+            "description": "获取4关节i值",
+            "spendTime": "0.0454 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointI",
+            "methodName": "test_get_gripper_joint_i_5",
+            "description": "获取5关节i值",
+            "spendTime": "0.0456 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointI",
+            "methodName": "test_get_gripper_joint_i_6",
+            "description": "获取6关节i值",
+            "spendTime": "0.046 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointI",
+            "methodName": "test_out_limit_1",
+            "description": "获取7关节i值（超限）",
+            "spendTime": "0.000981 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointI",
+            "methodName": "test_out_limit_2",
+            "description": "获取0关节i值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointMiniPressure",
+            "methodName": "test_get_gripper_joint_mini_pressure_1",
+            "description": "获取1关节mini_pressure值",
+            "spendTime": "0.0419 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointMiniPressure",
+            "methodName": "test_get_gripper_joint_mini_pressure_2",
+            "description": "获取2关节mini_pressure值",
+            "spendTime": "0.0454 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointMiniPressure",
+            "methodName": "test_get_gripper_joint_mini_pressure_3",
+            "description": "获取3关节mini_pressure值",
+            "spendTime": "0.045 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointMiniPressure",
+            "methodName": "test_get_gripper_joint_mini_pressure_4",
+            "description": "获取4关节mini_pressure值",
+            "spendTime": "0.0452 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointMiniPressure",
+            "methodName": "test_get_gripper_joint_mini_pressure_5",
+            "description": "获取5关节mini_pressure值",
+            "spendTime": "0.0454 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointMiniPressure",
+            "methodName": "test_get_gripper_joint_mini_pressure_6",
+            "description": "获取6关节mini_pressure值",
+            "spendTime": "0.0455 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointMiniPressure",
+            "methodName": "test_out_limit_1",
+            "description": "获取7关节mini_pressure值（超限）",
+            "spendTime": "0.00101 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointMiniPressure",
+            "methodName": "test_out_limit_2",
+            "description": "获取0关节mini_pressure值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointP",
+            "methodName": "test_get_gripper_joint_p_1",
+            "description": "获取1关节p值",
+            "spendTime": "0.041 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointP",
+            "methodName": "test_get_gripper_joint_p_2",
+            "description": "获取2关节p值",
+            "spendTime": "0.0454 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointP",
+            "methodName": "test_get_gripper_joint_p_3",
+            "description": "获取3关节p值",
+            "spendTime": "0.0455 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointP",
+            "methodName": "test_get_gripper_joint_p_4",
+            "description": "获取4关节p值",
+            "spendTime": "0.0451 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointP",
+            "methodName": "test_get_gripper_joint_p_5",
+            "description": "获取5关节p值",
+            "spendTime": "0.0452 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointP",
+            "methodName": "test_get_gripper_joint_p_6",
+            "description": "获取6关节p值",
+            "spendTime": "0.0452 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointP",
+            "methodName": "test_out_limit_1",
+            "description": "获取7关节p值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointP",
+            "methodName": "test_out_limit_2",
+            "description": "获取0关节p值（超限）",
+            "spendTime": "0.00101 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointSpeed",
+            "methodName": "test_get_gripper_joint_speed_1",
+            "description": "获取1关节speed值",
+            "spendTime": "0.043 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 43, in test_get_gripper_joint_speed\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 100 != 50\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 48, in test_get_gripper_joint_speed\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取1关节speed值】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestGetGripperJointSpeed",
+            "methodName": "test_get_gripper_joint_speed_2",
+            "description": "获取2关节speed值",
+            "spendTime": "0.0454 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 43, in test_get_gripper_joint_speed\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 100 != 50\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 48, in test_get_gripper_joint_speed\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取2关节speed值】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestGetGripperJointSpeed",
+            "methodName": "test_get_gripper_joint_speed_3",
+            "description": "获取3关节speed值",
+            "spendTime": "0.0465 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 43, in test_get_gripper_joint_speed\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 100 != 50\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 48, in test_get_gripper_joint_speed\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取3关节speed值】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestGetGripperJointSpeed",
+            "methodName": "test_get_gripper_joint_speed_4",
+            "description": "获取4关节speed值",
+            "spendTime": "0.045 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 43, in test_get_gripper_joint_speed\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 100 != 50\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 48, in test_get_gripper_joint_speed\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取4关节speed值】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestGetGripperJointSpeed",
+            "methodName": "test_get_gripper_joint_speed_5",
+            "description": "获取5关节speed值",
+            "spendTime": "0.0455 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 43, in test_get_gripper_joint_speed\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 100 != 50\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 48, in test_get_gripper_joint_speed\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取5关节speed值】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestGetGripperJointSpeed",
+            "methodName": "test_get_gripper_joint_speed_6",
+            "description": "获取6关节speed值",
+            "spendTime": "0.0465 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 43, in test_get_gripper_joint_speed\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 100 != 50\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_joint_speed.py\", line 48, in test_get_gripper_joint_speed\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取6关节speed值】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestGetGripperJointSpeed",
+            "methodName": "test_out_limit_1",
+            "description": "获取7关节speed值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointSpeed",
+            "methodName": "test_out_limit_2",
+            "description": "获取0关节speed值（超限）",
+            "spendTime": "0.00148 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointTorque",
+            "methodName": "test_get_gripper_joint_torque_1",
+            "description": "获取1关节torque值",
+            "spendTime": "0.0415 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointTorque",
+            "methodName": "test_get_gripper_joint_torque_2",
+            "description": "获取2关节torque值",
+            "spendTime": "0.0451 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointTorque",
+            "methodName": "test_get_gripper_joint_torque_3",
+            "description": "获取3关节torque值",
+            "spendTime": "0.0459 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointTorque",
+            "methodName": "test_get_gripper_joint_torque_4",
+            "description": "获取4关节torque值",
+            "spendTime": "0.0452 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointTorque",
+            "methodName": "test_get_gripper_joint_torque_5",
+            "description": "获取5关节torque值",
+            "spendTime": "0.0463 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointTorque",
+            "methodName": "test_get_gripper_joint_torque_6",
+            "description": "获取6关节torque值",
+            "spendTime": "0.0452 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointTorque",
+            "methodName": "test_out_limit_1",
+            "description": "获取7关节torque值（超限）",
+            "spendTime": "0.00101 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestGetGripperJointTorque",
+            "methodName": "test_out_limit_2",
+            "description": "获取0关节torque值（超限）",
+            "spendTime": "0.0 s",
             "status": "成功",
             "log": [
                 ""
@@ -7268,247 +7946,185 @@ body.skin-3 {
             "className": "TestGetGripperStatus",
             "methodName": "test_get_gripper_status_0_1",
             "description": "获取夹爪运动时的夹持状态",
-            "spendTime": "3.42 s",
+            "spendTime": "4.06 s",
             "status": "失败",
             "log": [
                 "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_status.py\", line 50, in test_get_gripper_status_0\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 0 != 2\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
                 "Traceback (most recent call last):\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_get_gripper_status.py\", line 59, in test_get_gripper_status_0\n    raise e\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_get_gripper_status.py\", line 54, in test_get_gripper_status_0\n    self.assertEqual(case['expect_data'], response)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
-                "AssertionError: 0 != 1\n"
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_status.py\", line 55, in test_get_gripper_status_0\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取夹爪运动时的夹持状态】断言失败\n"
             ]
         },
         {
             "className": "TestGetGripperStatus",
             "methodName": "test_get_gripper_status_1_1",
             "description": "获取夹爪停止运动时的夹持状态",
-            "spendTime": "8.05 s",
-            "status": "成功",
+            "spendTime": "8.07 s",
+            "status": "失败",
             "log": [
-                ""
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_status.py\", line 77, in test_get_gripper_status_1\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 1 != 2\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_status.py\", line 82, in test_get_gripper_status_1\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取夹爪停止运动时的夹持状态】断言失败\n"
             ]
         },
         {
             "className": "TestGetGripperStatus",
             "methodName": "test_get_gripper_status_2_1",
             "description": "获取夹爪停止运动且夹到物体时的夹持状态",
-            "spendTime": "11.8 s",
-            "status": "成功",
+            "spendTime": "15.4 s",
+            "status": "失败",
             "log": [
-                "请放置物体到夹爪中间后，点击回车开始测试"
+                "请放置物体到夹爪中间后，点击回车开始测试",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_status.py\", line 106, in test_get_gripper_status_2\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 2 != 1\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_status.py\", line 111, in test_get_gripper_status_2\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取夹爪停止运动且夹到物体时的夹持状态】断言失败\n"
             ]
         },
         {
             "className": "TestGetGripperStatus",
             "methodName": "test_get_gripper_status_3_1",
             "description": "获取夹爪停止运动且物体掉落时的夹持状态",
-            "spendTime": "56.6 s",
-            "status": "成功",
+            "spendTime": "6.49 s",
+            "status": "失败",
             "log": [
-                "请取下夹爪夹取的物体后，点击回车开始测试"
-            ]
-        },
-        {
-            "className": "TestGetGripperTorque",
-            "methodName": "test_get_gripper_torque_1",
-            "description": "正确获取夹爪扭矩",
-            "spendTime": "0.0451 s",
-            "status": "成功",
-            "log": [
-                ""
+                "请取下夹爪夹取的物体后，点击回车开始测试",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_status.py\", line 133, in test_get_gripper_status_3\n    self.assertEqual(case['expect_data'], response)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 3 != 1\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_get_gripper_status.py\", line 138, in test_get_gripper_status_3\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【获取夹爪停止运动且物体掉落时的夹持状态】断言失败\n"
             ]
         },
         {
             "className": "TestGetModifiedVersion",
             "methodName": "test_get_modified_version_1",
             "description": "正确获取固件次版本号",
-            "spendTime": "0.0434 s",
+            "spendTime": "0.0465 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestGetOpenAngle",
-            "methodName": "test_get_open_angle_1",
-            "description": "获取夹爪张开角度",
-            "spendTime": "0.0445 s",
+            "className": "TestSetGripperAngles",
+            "methodName": "test_out_limit_1",
+            "description": "设置任意关节超限",
+            "spendTime": "5.01 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestGetProtectionCurrent",
-            "methodName": "test_get_protection_current_1",
-            "description": "正确获取夹爪夹持电流",
-            "spendTime": "0.0477 s",
+            "className": "TestSetGripperAngles",
+            "methodName": "test_out_limit_2",
+            "description": "设置速度超限",
+            "spendTime": "5.01 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperAngles",
+            "methodName": "test_set_gripper_angles_1",
+            "description": "正确设置夹爪全角度",
+            "spendTime": "8.18 s",
             "status": "失败",
             "log": [
                 "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_angles.py\", line 53, in test_set_gripper_angles\n    self.assertEqual(get_res, eval(case[\"angles\"]))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 1051, in assertListEqual\n    self.assertSequenceEqual(list1, list2, msg, seq_type=list)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 1033, in assertSequenceEqual\n    self.fail(msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: Lists differ: [8, 9, 9, 2, 10, 8] != [10, 10, 10, 10, 10, 10]\n\nFirst differing element 0:\n8\n10\n\n- [8, 9, 9, 2, 10, 8]\n+ [10, 10, 10, 10, 10, 10]\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
                 "Traceback (most recent call last):\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_get_protection_current.py\", line 51, in test_get_protection_current\n    raise e\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_get_protection_current.py\", line 46, in test_get_protection_current\n    self.assertEqual(case['expect_data'], response)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
-                "AssertionError: 300 != 100\n"
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_angles.py\", line 58, in test_set_gripper_angles\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【正确设置夹爪全角度】断言失败\n"
             ]
         },
         {
-            "className": "TestGetQueueCount",
-            "methodName": "test_get_queue_count_1",
-            "description": "正确获取夹爪队列长度",
-            "spendTime": "0.0545 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestGetToSetSpeed",
-            "methodName": "test_get_to_set_speed_1",
-            "description": "正确获取夹爪速度",
-            "spendTime": "0.049 s",
+            "className": "TestSetGripperAngles",
+            "methodName": "test_set_gripper_angles_2",
+            "description": "正确设置夹爪全角度",
+            "spendTime": "10.6 s",
             "status": "失败",
             "log": [
                 "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_angles.py\", line 53, in test_set_gripper_angles\n    self.assertEqual(get_res, eval(case[\"angles\"]))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 1051, in assertListEqual\n    self.assertSequenceEqual(list1, list2, msg, seq_type=list)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 1033, in assertSequenceEqual\n    self.fail(msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: Lists differ: [38, 39, 39, 2, 49, 48] != [40, 40, 40, 50, 50, 50]\n\nFirst differing element 0:\n38\n40\n\n- [38, 39, 39, 2, 49, 48]\n+ [40, 40, 40, 50, 50, 50]\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
                 "Traceback (most recent call last):\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_get_to_set_speed.py\", line 51, in test_get_to_set_speed\n    raise e\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_get_to_set_speed.py\", line 46, in test_get_to_set_speed\n    self.assertEqual(case['expect_data'], response)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
-                "AssertionError: 100 != 0\n"
-            ]
-        },
-        {
-            "className": "TestGetQueueCount",
-            "methodName": "test_get_vir_pos_1",
-            "description": "正确获取夹爪虚位数值",
-            "spendTime": "0.042 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestPause",
-            "methodName": "test_pause_1",
-            "description": "正确设置夹爪暂停",
-            "spendTime": "0.337 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestResume",
-            "methodName": "test_resume_1",
-            "description": "正确设置夹爪恢复运动",
-            "spendTime": "0.0442 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetAbsGripperAngle",
-            "methodName": "test_out_limit_1",
-            "description": "设置绝对运动角度（超限）",
-            "spendTime": "4.31 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetAbsGripperAngle",
-            "methodName": "test_out_limit_2",
-            "description": "设置绝对运动速度（超限）",
-            "spendTime": "3.11 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetAbsGripperAngle",
-            "methodName": "test_pause_and_resume_1",
-            "description": "绝对运动中暂停，恢复运动",
-            "spendTime": "11.3 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetAbsGripperAngle",
-            "methodName": "test_set_abs_gripper_angle_1",
-            "description": "正确设置夹爪绝对运动",
-            "spendTime": "7.48 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetAbsGripperAngle",
-            "methodName": "test_stop_1",
-            "description": "绝对运动中停止运动",
-            "spendTime": "7.35 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetCloseAngle",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪关闭角度（超限）",
-            "spendTime": "0.0 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetCloseAngle",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪关闭角度（超限）",
-            "spendTime": "0.0 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetCloseAngle",
-            "methodName": "test_set_close_angle_1",
-            "description": "正确设置夹爪关闭角度",
-            "spendTime": "0.0441 s",
-            "status": "成功",
-            "log": [
-                ""
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_angles.py\", line 58, in test_set_gripper_angles\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【正确设置夹爪全角度】断言失败\n"
             ]
         },
         {
             "className": "TestSetGripperBaud",
             "methodName": "test_out_limit_1",
             "description": "设置波特率参数超限",
-            "spendTime": "0.0 s",
+            "spendTime": "0.001 s",
             "status": "成功",
             "log": [
                 ""
@@ -7518,7 +8134,7 @@ body.skin-3 {
             "className": "TestSetGripperBaud",
             "methodName": "test_out_limit_2",
             "description": "设置波特率参数超限",
-            "spendTime": "0.0 s",
+            "spendTime": "0.002 s",
             "status": "成功",
             "log": [
                 ""
@@ -7528,45 +8144,110 @@ body.skin-3 {
             "className": "TestSetGripperBaud",
             "methodName": "test_set_gripper_baud_1",
             "description": "正确设置固件波特率号",
-            "spendTime": "1.11 s",
+            "spendTime": "0.093 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetGripperCalibrate",
-            "methodName": "test_set_gripper_calibrate_1",
-            "description": "正确设置夹爪零位",
-            "spendTime": "5.05 s",
-            "status": "错误",
+            "className": "TestSetGripperJointCalibrate",
+            "methodName": "test_out_limit_1",
+            "description": "设置关节超限",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCalibrate",
+            "methodName": "test_out_limit_2",
+            "description": "设置关节超限",
+            "spendTime": "0.00142 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCalibrate",
+            "methodName": "test_set_gripper_joint_calibration_1",
+            "description": "设置1关节零位",
+            "spendTime": "4.94 s",
+            "status": "失败",
             "log": [
                 "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_calibrate.py\", line 48, in test_set_gripper_joint_calibration\n    self.assertEqual(case['expect_data'], set_res)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 1 != 65535\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
                 "Traceback (most recent call last):\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
                 "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_gripper_calibrate.py\", line 37, in test_set_gripper_calibrate\n    response = self.device.m.set_gripper_calibration()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\elegripper\\elegripper.py\", line 208, in set_gripper_calibration\n    return self.__send_cmd(cmd)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\elegripper\\elegripper.py\", line 125, in __send_cmd\n    raise TimeoutError(\"Reading data timeout\")\n",
-                "TimeoutError: Reading data timeout\n"
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_calibrate.py\", line 53, in test_set_gripper_joint_calibration\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【设置1关节零位】断言失败\n"
             ]
         },
         {
-            "className": "TestSetGripperCw",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪顺时针可运行误差(超限)",
-            "spendTime": "0.000516 s",
+            "className": "TestSetGripperJointCalibrate",
+            "methodName": "test_set_gripper_joint_calibration_2",
+            "description": "设置2关节零位",
+            "spendTime": "8.14 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetGripperCw",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪顺时针可运行误差(超限)",
+            "className": "TestSetGripperJointCalibrate",
+            "methodName": "test_set_gripper_joint_calibration_3",
+            "description": "设置3关节零位",
+            "spendTime": "8.12 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCalibrate",
+            "methodName": "test_set_gripper_joint_calibration_4",
+            "description": "设置4关节零位",
+            "spendTime": "3.25 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCalibrate",
+            "methodName": "test_set_gripper_joint_calibration_5",
+            "description": "设置5关节零位",
+            "spendTime": "5.22 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCalibrate",
+            "methodName": "test_set_gripper_joint_calibration_6",
+            "description": "设置6关节零位",
+            "spendTime": "5.29 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperEnable",
+            "methodName": "test_out_limit_1",
+            "description": "设置使能接口参数超限",
             "spendTime": "0.0 s",
             "status": "成功",
             "log": [
@@ -7574,49 +8255,29 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetGripperCw",
-            "methodName": "test_set_gripper_cw_1",
-            "description": "正确设置夹爪顺时针可运行误差",
-            "spendTime": "0.102 s",
+            "className": "TestSetGripperEnable",
+            "methodName": "test_set_gripper_enable_1",
+            "description": "设置夹爪上使能",
+            "spendTime": "0.0443 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetGripperCww",
+            "className": "TestSetGripperEnable",
+            "methodName": "test_set_gripper_enable_2",
+            "description": "设置夹爪下使能",
+            "spendTime": "0.0444 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperID",
             "methodName": "test_out_limit_1",
-            "description": "设置夹爪逆时针可运行误差(超限)",
-            "spendTime": "0.00137 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperCww",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪逆时针可运行误差(超限)",
-            "spendTime": "0.000506 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperCww",
-            "methodName": "test_set_gripper_cww_1",
-            "description": "正确设置夹爪逆时针可运行误差",
-            "spendTime": "0.0913 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperD",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪D值（超限）",
+            "description": "设置ID参数超限",
             "spendTime": "0.0 s",
             "status": "成功",
             "log": [
@@ -7624,90 +8285,10 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetGripperD",
+            "className": "TestSetGripperID",
             "methodName": "test_out_limit_2",
-            "description": "设置夹爪D值（超限）",
+            "description": "设置ID参数超限",
             "spendTime": "0.001 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperD",
-            "methodName": "test_set_gripper_d_1",
-            "description": "正确设置夹爪D值",
-            "spendTime": "0.0913 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperEnabled",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪使能状态（超限）",
-            "spendTime": "0.0 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperEnabled",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪使能状态（超限）",
-            "spendTime": "0.0 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperEnabled",
-            "methodName": "test_set_gripper_enabled_1",
-            "description": "正确设置夹爪使能状态(上使能)",
-            "spendTime": "0.042 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperEnabled",
-            "methodName": "test_set_gripper_enabled_2",
-            "description": "正确设置夹爪使能状态(下使能)",
-            "spendTime": "0.0472 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperI",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪I值（超限）",
-            "spendTime": "0.0 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperI",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪I值（超限）",
-            "spendTime": "0.000576 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperI",
-            "methodName": "test_set_gripper_i_1",
-            "description": "正确设置夹爪I值",
-            "spendTime": "0.091 s",
             "status": "成功",
             "log": [
                 ""
@@ -7717,6 +8298,420 @@ body.skin-3 {
             "className": "TestSetGripperID",
             "methodName": "test_set_gripper_id_1",
             "description": "正确设置固件ID号",
+            "spendTime": "0.0877 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointAngle",
+            "methodName": "test_out_limit_1",
+            "description": "设置关节超限",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointAngle",
+            "methodName": "test_out_limit_2",
+            "description": "设置角度超限",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointAngle",
+            "methodName": "test_set_gripper_joint_angle_1",
+            "description": "设置1关节运动到20度",
+            "spendTime": "2.09 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 52, in test_set_gripper_joint_angle\n    self.assertEqual(self.get_res, case[\"angle\"])\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 19 != 20\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 57, in test_set_gripper_joint_angle\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【设置1关节运动到20度】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestSetGripperJointAngle",
+            "methodName": "test_set_gripper_joint_angle_2",
+            "description": "设置2关节运动到10度",
+            "spendTime": "2.09 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 52, in test_set_gripper_joint_angle\n    self.assertEqual(self.get_res, case[\"angle\"])\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 9 != 10\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 57, in test_set_gripper_joint_angle\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【设置2关节运动到10度】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestSetGripperJointAngle",
+            "methodName": "test_set_gripper_joint_angle_3",
+            "description": "设置3关节运动到20度",
+            "spendTime": "2.1 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 52, in test_set_gripper_joint_angle\n    self.assertEqual(self.get_res, case[\"angle\"])\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 19 != 20\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 57, in test_set_gripper_joint_angle\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【设置3关节运动到20度】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestSetGripperJointAngle",
+            "methodName": "test_set_gripper_joint_angle_4",
+            "description": "设置4关节运动到20度",
+            "spendTime": "2.1 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 52, in test_set_gripper_joint_angle\n    self.assertEqual(self.get_res, case[\"angle\"])\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 0 != 20\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 57, in test_set_gripper_joint_angle\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【设置4关节运动到20度】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestSetGripperJointAngle",
+            "methodName": "test_set_gripper_joint_angle_5",
+            "description": "设置5关节运动到20度",
+            "spendTime": "2.1 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 52, in test_set_gripper_joint_angle\n    self.assertEqual(self.get_res, case[\"angle\"])\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 18 != 20\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 57, in test_set_gripper_joint_angle\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【设置5关节运动到20度】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestSetGripperJointAngle",
+            "methodName": "test_set_gripper_joint_angle_6",
+            "description": "设置6关节运动到20度",
+            "spendTime": "2.09 s",
+            "status": "失败",
+            "log": [
+                "",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 52, in test_set_gripper_joint_angle\n    self.assertEqual(self.get_res, case[\"angle\"])\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
+                "AssertionError: 18 != 20\n",
+                "\nDuring handling of the above exception, another exception occurred:\n\n",
+                "Traceback (most recent call last):\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
+                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_my_hand\\test_set_gripper_joint_angle.py\", line 57, in test_set_gripper_joint_angle\n    self.fail(\"用例【{}】断言失败\".format(case['title']))\n",
+                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 675, in fail\n    raise self.failureException(msg)\n",
+                "AssertionError: 用例【设置6关节运动到20度】断言失败\n"
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_out_limit_1",
+            "description": "设置7关节cw值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_out_limit_2",
+            "description": "设置0关节cw值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_out_limit_3",
+            "description": "设置1关节cw值（超限）",
+            "spendTime": "0.00148 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_out_limit_4",
+            "description": "设置2关节cw值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_out_limit_5",
+            "description": "设置3关节cw值（超限）",
+            "spendTime": "0.00101 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_out_limit_6",
+            "description": "设置4关节cw值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_out_limit_7",
+            "description": "设置5关节cw值（超限）",
+            "spendTime": "0.003 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_out_limit_8",
+            "description": "设置6关节cw值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_set_gripper_joint_cw_1",
+            "description": "设置1关节cw值",
+            "spendTime": "0.0984 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_set_gripper_joint_cw_2",
+            "description": "设置2关节cw值",
+            "spendTime": "0.0907 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_set_gripper_joint_cw_3",
+            "description": "设置3关节cw值",
+            "spendTime": "0.0921 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_set_gripper_joint_cw_4",
+            "description": "设置4关节cw值",
+            "spendTime": "0.0907 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_set_gripper_joint_cw_5",
+            "description": "设置5关节cw值",
+            "spendTime": "0.0918 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCw",
+            "methodName": "test_set_gripper_joint_cw_6",
+            "description": "设置6关节cw值",
+            "spendTime": "0.0906 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_out_limit_1",
+            "description": "设置7关节cww值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_out_limit_2",
+            "description": "设置0关节cww值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_out_limit_3",
+            "description": "设置1关节cww值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_out_limit_4",
+            "description": "设置2关节cww值（超限）",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_out_limit_5",
+            "description": "设置3关节cww值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_out_limit_6",
+            "description": "设置4关节cww值（超限）",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_out_limit_7",
+            "description": "设置5关节cww值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_out_limit_8",
+            "description": "设置6关节cww值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_set_gripper_joint_cww_1",
+            "description": "设置1关节cww值",
+            "spendTime": "0.0882 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_set_gripper_joint_cww_2",
+            "description": "设置2关节cww值",
+            "spendTime": "0.09 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_set_gripper_joint_cww_3",
+            "description": "设置3关节cww值",
             "spendTime": "0.092 s",
             "status": "成功",
             "log": [
@@ -7724,29 +8719,9 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetGripperCw",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪最小启动力（超限）",
-            "spendTime": "0.0 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperCw",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪最小启动力（超限）",
-            "spendTime": "0.0 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "TestSetGripperCw",
-            "methodName": "test_set_gripper_min_pressure_1",
-            "description": "正确设置夹爪最小启动力",
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_set_gripper_joint_cww_4",
+            "description": "设置4关节cww值",
             "spendTime": "0.0914 s",
             "status": "成功",
             "log": [
@@ -7754,46 +8729,49 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetGripperP",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪P值（超限）",
-            "spendTime": "0.0 s",
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_set_gripper_joint_cww_5",
+            "description": "设置5关节cww值",
+            "spendTime": "0.0901 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetGripperP",
+            "className": "TestSetGripperJointCww",
+            "methodName": "test_set_gripper_joint_cww_6",
+            "description": "设置6关节cww值",
+            "spendTime": "0.0915 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointD",
+            "methodName": "test_out_limit_1",
+            "description": "设置7关节d值（超限）",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointD",
             "methodName": "test_out_limit_2",
-            "description": "设置夹爪P值（超限）",
-            "spendTime": "0.00108 s",
+            "description": "设置0关节d值（超限）",
+            "spendTime": "0.000998 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetGripperP",
-            "methodName": "test_set_gripper_p_1",
-            "description": "正确设置夹爪P值",
-            "spendTime": "0.092 s",
-            "status": "错误",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_gripper_p.py\", line 49, in test_set_gripper_p\n    self.assertEqual(case['expect_data'], set_res)\n",
-                "KeyError: 'expect_data'\n"
-            ]
-        },
-        {
-            "className": "TestSetGripperTorque",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪扭矩（超限）",
+            "className": "TestSetGripperJointD",
+            "methodName": "test_out_limit_3",
+            "description": "设置1关节d值（超限）",
             "spendTime": "0.0 s",
             "status": "成功",
             "log": [
@@ -7801,9 +8779,9 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetGripperTorque",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪扭矩（超限）",
+            "className": "TestSetGripperJointD",
+            "methodName": "test_out_limit_4",
+            "description": "设置2关节d值（超限）",
             "spendTime": "0.0 s",
             "status": "成功",
             "log": [
@@ -7811,103 +8789,29 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetGripperTorque",
-            "methodName": "test_set_gripper_torque_1",
-            "description": "正确设置夹爪扭矩",
-            "spendTime": "0.122 s",
+            "className": "TestSetGripperJointD",
+            "methodName": "test_out_limit_5",
+            "description": "设置3关节d值（超限）",
+            "spendTime": "0.000998 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetGripperValue",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪速度（超限）",
+            "className": "TestSetGripperJointD",
+            "methodName": "test_out_limit_6",
+            "description": "设置4关节d值（超限）",
             "spendTime": "0.002 s",
-            "status": "错误",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_gripper_value.py\", line 72, in test_out_limit\n    self.device.m.set_gripper_value(case[\"parameter\"], case[\"speed\"])\n",
-                "KeyError: 'parameter'\n"
-            ]
-        },
-        {
-            "className": "TestSetGripperValue",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪角度（超限）",
-            "spendTime": "0.001 s",
-            "status": "错误",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_gripper_value.py\", line 72, in test_out_limit\n    self.device.m.set_gripper_value(case[\"parameter\"], case[\"speed\"])\n",
-                "KeyError: 'parameter'\n"
-            ]
-        },
-        {
-            "className": "TestSetGripperValue",
-            "methodName": "test_set_gripper_value_1",
-            "description": "正确设置夹爪角度(100度)",
-            "spendTime": "0.169 s",
-            "status": "失败",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_gripper_value.py\", line 55, in test_set_gripper_value\n    raise e\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_gripper_value.py\", line 50, in test_set_gripper_value\n    self.assertEqual(get_res, case[\"value\"])\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
-                "AssertionError: 0 != 100\n"
-            ]
-        },
-        {
-            "className": "TestSetGripperValue",
-            "methodName": "test_set_gripper_value_2",
-            "description": "正确设置夹爪角度(0度)",
-            "spendTime": "0.142 s",
-            "status": "失败",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_gripper_value.py\", line 55, in test_set_gripper_value\n    raise e\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_gripper_value.py\", line 50, in test_set_gripper_value\n    self.assertEqual(get_res, case[\"value\"])\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 845, in assertEqual\n    assertion_func(first, second, msg=msg)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 838, in _baseAssertEqual\n    raise self.failureException(msg)\n",
-                "AssertionError: 11 != 0\n"
-            ]
-        },
-        {
-            "className": "TestSetOpenAngle",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪张开角度（超限）",
-            "spendTime": "0.001 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetOpenAngle",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪张开角度（超限）",
+            "className": "TestSetGripperJointD",
+            "methodName": "test_out_limit_7",
+            "description": "设置5关节d值（超限）",
             "spendTime": "0.0 s",
             "status": "成功",
             "log": [
@@ -7915,45 +8819,89 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetOpenAngle",
-            "methodName": "test_set_open_angle_1",
-            "description": "正确设置夹爪张开角度",
-            "spendTime": "0.0425 s",
-            "status": "成功",
-            "log": [
-                ""
-            ]
-        },
-        {
-            "className": "_FailedTest",
-            "methodName": "test_set_out_put",
-            "description": null,
+            "className": "TestSetGripperJointD",
+            "methodName": "test_out_limit_8",
+            "description": "设置6关节d值（超限）",
             "spendTime": "0.00101 s",
-            "status": "错误",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\loader.py\", line 34, in testFailure\n    raise self._exception\n",
-                "ImportError: Failed to import test module: test_set_out_put\nTraceback (most recent call last):\n  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\loader.py\", line 436, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\loader.py\", line 377, in _get_module_from_name\n    __import__(name)\n  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_out_put.py\", line 11, in <module>\n    cases = get_test_data_from_excel(TestProGripper.TEST_DATA_FILE, \"set_out_put\")\n  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\common1\\test_data_handler.py\", line 15, in get_test_data_from_excel\n    sh = wb[sheet_name]\n  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\openpyxl\\workbook\\workbook.py\", line 287, in __getitem__\n    raise KeyError(\"Worksheet {0} does not exist.\".format(key))\nKeyError: 'Worksheet set_out_put does not exist.'\n\n"
-            ]
-        },
-        {
-            "className": "TestSetProtectionCurrent",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪夹持电流（超限）",
-            "spendTime": "0.000999 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetProtectionCurrent",
+            "className": "TestSetGripperJointD",
+            "methodName": "test_set_gripper_joint_d_1",
+            "description": "设置1关节d值",
+            "spendTime": "0.0986 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointD",
+            "methodName": "test_set_gripper_joint_d_2",
+            "description": "设置2关节d值",
+            "spendTime": "0.0906 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointD",
+            "methodName": "test_set_gripper_joint_d_3",
+            "description": "设置3关节d值",
+            "spendTime": "0.0922 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointD",
+            "methodName": "test_set_gripper_joint_d_4",
+            "description": "设置4关节d值",
+            "spendTime": "0.0902 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointD",
+            "methodName": "test_set_gripper_joint_d_5",
+            "description": "设置5关节d值",
+            "spendTime": "0.0913 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointD",
+            "methodName": "test_set_gripper_joint_d_6",
+            "description": "设置6关节d值",
+            "spendTime": "0.0922 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
+            "methodName": "test_out_limit_1",
+            "description": "设置7关节i值（超限）",
+            "spendTime": "0.00054 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
             "methodName": "test_out_limit_2",
-            "description": "设置夹爪夹持电流（超限）",
+            "description": "设置0关节i值（超限）",
             "spendTime": "0.0 s",
             "status": "成功",
             "log": [
@@ -7961,86 +8909,29 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetProtectionCurrent",
-            "methodName": "test_set_protection_current_1",
-            "description": "正确设置夹爪夹持电流",
-            "spendTime": "0.000999 s",
-            "status": "错误",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_protection_current.py\", line 38, in test_set_protection_current\n    set_res = self.device.m.set_gripper_protection_current(case[\"parameter\"])\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\elegripper\\elegripper.py\", line 768, in set_gripper_protection_current\n    if self.check_value(value, 100, 300):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\elegripper\\elegripper.py\", line 63, in check_value\n    raise ValueError(f\"The first input value can be selected as: [{lower},{upper}]\")\n",
-                "ValueError: The first input value can be selected as: [100,300]\n"
-            ]
-        },
-        {
-            "className": "TestSetSpeed",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪速度（超限）",
-            "spendTime": "0.001 s",
+            "className": "TestSetGripperJointI",
+            "methodName": "test_out_limit_3",
+            "description": "设置1关节i值（超限）",
+            "spendTime": "0.0 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetSpeed",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪速度（超限）",
-            "spendTime": "0.0473 s",
-            "status": "失败",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_speed.py\", line 67, in test_out_limit\n    with self.assertRaises(ValueError,\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 226, in __exit__\n    self._raiseFailure(\"{} not raised\".format(exc_name))\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 163, in _raiseFailure\n    raise self.test_case.failureException(msg)\n",
-                "AssertionError: ValueError not raised : 用例设置夹爪速度（超限）未触发value错误，value值为0\n"
-            ]
-        },
-        {
-            "className": "TestSetSpeed",
-            "methodName": "test_set_speed_1",
-            "description": "正确设置夹爪速度",
-            "spendTime": "0.0433 s",
+            "className": "TestSetGripperJointI",
+            "methodName": "test_out_limit_4",
+            "description": "设置2关节i值（超限）",
+            "spendTime": "0.0 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestSetVirPos",
-            "methodName": "test_out_limit_1",
-            "description": "设置夹爪虚位数值（超限）",
-            "spendTime": "0.0457 s",
-            "status": "失败",
-            "log": [
-                "",
-                "Traceback (most recent call last):\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 59, in testPartExecutor\n    yield\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 591, in run\n    self._callTestMethod(testMethod)\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 549, in _callTestMethod\n    method()\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\ddt.py\", line 221, in wrapper\n    return func(self, *args, **kwargs)\n",
-                "  File \"C:\\Users\\Elephant\\Desktop\\elephant-autotest\\test_pro_gripper\\test_set_vir_pos.py\", line 68, in test_out_limit\n    with self.assertRaises(ValueError,\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 226, in __exit__\n    self._raiseFailure(\"{} not raised\".format(exc_name))\n",
-                "  File \"C:\\Users\\Elephant\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\case.py\", line 163, in _raiseFailure\n    raise self.test_case.failureException(msg)\n",
-                "AssertionError: ValueError not raised : 用例设置夹爪虚位数值（超限）未触发value错误，value值为17\n"
-            ]
-        },
-        {
-            "className": "TestSetVirPos",
-            "methodName": "test_out_limit_2",
-            "description": "设置夹爪虚位数值（超限）",
+            "className": "TestSetGripperJointI",
+            "methodName": "test_out_limit_5",
+            "description": "设置3关节i值（超限）",
             "spendTime": "0.00101 s",
             "status": "成功",
             "log": [
@@ -8048,20 +8939,730 @@ body.skin-3 {
             ]
         },
         {
-            "className": "TestSetVirPos",
-            "methodName": "test_set_vir_pos_1",
-            "description": "正确设置夹爪虚位数值",
-            "spendTime": "0.106 s",
+            "className": "TestSetGripperJointI",
+            "methodName": "test_out_limit_6",
+            "description": "设置4关节i值（超限）",
+            "spendTime": "0.0 s",
             "status": "成功",
             "log": [
                 ""
             ]
         },
         {
-            "className": "TestStop",
-            "methodName": "test_stop_1",
-            "description": "正确设置夹爪停止运动",
-            "spendTime": "0.794 s",
+            "className": "TestSetGripperJointI",
+            "methodName": "test_out_limit_7",
+            "description": "设置5关节i值（超限）",
+            "spendTime": "0.005 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
+            "methodName": "test_out_limit_8",
+            "description": "设置6关节i值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
+            "methodName": "test_set_gripper_joint_i_1",
+            "description": "设置1关节i值",
+            "spendTime": "0.097 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
+            "methodName": "test_set_gripper_joint_i_2",
+            "description": "设置2关节i值",
+            "spendTime": "0.0928 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
+            "methodName": "test_set_gripper_joint_i_3",
+            "description": "设置3关节i值",
+            "spendTime": "0.0919 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
+            "methodName": "test_set_gripper_joint_i_4",
+            "description": "设置4关节i值",
+            "spendTime": "0.0905 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
+            "methodName": "test_set_gripper_joint_i_5",
+            "description": "设置5关节i值",
+            "spendTime": "0.0919 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointI",
+            "methodName": "test_set_gripper_joint_i_6",
+            "description": "设置6关节i值",
+            "spendTime": "0.0919 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_out_limit_1",
+            "description": "设置7关节p值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_out_limit_2",
+            "description": "设置0关节p值（超限）",
+            "spendTime": "0.000999 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_out_limit_3",
+            "description": "设置1关节p值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_out_limit_4",
+            "description": "设置2关节p值（超限）",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_out_limit_5",
+            "description": "设置3关节p值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_out_limit_6",
+            "description": "设置4关节p值（超限）",
+            "spendTime": "0.000998 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_out_limit_7",
+            "description": "设置5关节p值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_out_limit_8",
+            "description": "设置6关节p值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_set_gripper_joint_p_1",
+            "description": "设置1关节p值",
+            "spendTime": "0.101 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_set_gripper_joint_p_2",
+            "description": "设置2关节p值",
+            "spendTime": "0.0904 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_set_gripper_joint_p_3",
+            "description": "设置3关节p值",
+            "spendTime": "0.0919 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_set_gripper_joint_p_4",
+            "description": "设置4关节p值",
+            "spendTime": "0.0902 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_set_gripper_joint_p_5",
+            "description": "设置5关节p值",
+            "spendTime": "0.0908 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointP",
+            "methodName": "test_set_gripper_joint_p_6",
+            "description": "设置6关节p值",
+            "spendTime": "0.0926 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_out_limit_1",
+            "description": "设置7关节speed值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_out_limit_2",
+            "description": "设置0关节speed值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_out_limit_3",
+            "description": "设置1关节speed值（超限）",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_out_limit_4",
+            "description": "设置2关节speed值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_out_limit_5",
+            "description": "设置3关节speed值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_out_limit_6",
+            "description": "设置4关节speed值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_out_limit_7",
+            "description": "设置5关节speed值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_out_limit_8",
+            "description": "设置6关节speed值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_set_gripper_joint_speed_1",
+            "description": "设置1关节speed值",
+            "spendTime": "0.0886 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_set_gripper_joint_speed_2",
+            "description": "设置2关节speed值",
+            "spendTime": "0.091 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_set_gripper_joint_speed_3",
+            "description": "设置3关节speed值",
+            "spendTime": "0.0917 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_set_gripper_joint_speed_4",
+            "description": "设置4关节speed值",
+            "spendTime": "0.0919 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_set_gripper_joint_speed_5",
+            "description": "设置5关节speed值",
+            "spendTime": "0.0915 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointSpeed",
+            "methodName": "test_set_gripper_joint_speed_6",
+            "description": "设置6关节speed值",
+            "spendTime": "0.0908 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_out_limit_1",
+            "description": "设置7关节torque值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_out_limit_2",
+            "description": "设置0关节torque值（超限）",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_out_limit_3",
+            "description": "设置1关节torque值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_out_limit_4",
+            "description": "设置2关节torque值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_out_limit_5",
+            "description": "设置3关节torque值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_out_limit_6",
+            "description": "设置4关节torque值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_out_limit_7",
+            "description": "设置5关节torque值（超限）",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_out_limit_8",
+            "description": "设置6关节torque值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_set_gripper_joint_torque_1",
+            "description": "设置1关节torque值",
+            "spendTime": "0.104 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_set_gripper_joint_torque_2",
+            "description": "设置2关节torque值",
+            "spendTime": "0.0876 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_set_gripper_joint_torque_3",
+            "description": "设置3关节torque值",
+            "spendTime": "0.0921 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_set_gripper_joint_torque_4",
+            "description": "设置4关节torque值",
+            "spendTime": "0.0963 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_set_gripper_joint_torque_5",
+            "description": "设置5关节torque值",
+            "spendTime": "0.0873 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointTorque",
+            "methodName": "test_set_gripper_joint_torque_6",
+            "description": "设置6关节torque值",
+            "spendTime": "0.0928 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_out_limit_1",
+            "description": "设置7关节mini_pressure值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_out_limit_2",
+            "description": "设置0关节mini_pressure值（超限）",
+            "spendTime": "0.001 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_out_limit_3",
+            "description": "设置1关节mini_pressure值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_out_limit_4",
+            "description": "设置2关节mini_pressure值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_out_limit_5",
+            "description": "设置3关节mini_pressure值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_out_limit_6",
+            "description": "设置4关节mini_pressure值（超限）",
+            "spendTime": "0.00329 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_out_limit_7",
+            "description": "设置5关节mini_pressure值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_out_limit_8",
+            "description": "设置6关节mini_pressure值（超限）",
+            "spendTime": "0.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_set_gripper_joint_mini_pressure_1",
+            "description": "设置1关节mini_pressure值",
+            "spendTime": "0.104 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_set_gripper_joint_mini_pressure_2",
+            "description": "设置2关节mini_pressure值",
+            "spendTime": "0.0919 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_set_gripper_joint_mini_pressure_3",
+            "description": "设置3关节mini_pressure值",
+            "spendTime": "0.0907 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_set_gripper_joint_mini_pressure_4",
+            "description": "设置4关节mini_pressure值",
+            "spendTime": "0.0927 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_set_gripper_joint_mini_pressure_5",
+            "description": "设置5关节mini_pressure值",
+            "spendTime": "0.0906 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperJointMiniPressure",
+            "methodName": "test_set_gripper_joint_mini_pressure_6",
+            "description": "设置6关节mini_pressure值",
+            "spendTime": "0.0916 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperPose",
+            "methodName": "test_out_limit_1",
+            "description": "设置pose参数超限",
+            "spendTime": "5.01 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperPose",
+            "methodName": "test_out_limit_2",
+            "description": "设置rank参数超限",
+            "spendTime": "5.0 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperPose",
+            "methodName": "test_out_limit_3",
+            "description": "设置is_free参数超限",
+            "spendTime": "5.01 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperPose",
+            "methodName": "test_set_gripper_pose_1",
+            "description": "设置全关节回零",
+            "spendTime": "5.05 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperPose",
+            "methodName": "test_set_gripper_pose_2",
+            "description": "设置食指与拇指捏合",
+            "spendTime": "5.06 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperPose",
+            "methodName": "test_set_gripper_pose_3",
+            "description": "设置中指与拇指捏合",
+            "spendTime": "5.05 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperPose",
+            "methodName": "test_set_gripper_pose_4",
+            "description": "设置食指与中指捏合",
+            "spendTime": "5.06 s",
+            "status": "成功",
+            "log": [
+                ""
+            ]
+        },
+        {
+            "className": "TestSetGripperPose",
+            "methodName": "test_set_gripper_pose_5",
+            "description": "设置三指合拢",
+            "spendTime": "5.06 s",
             "status": "成功",
             "log": [
                 ""
@@ -8069,10 +9670,10 @@ body.skin-3 {
         }
     ],
     "testName": "elephant-test",
-    "testAll": 79,
-    "testFail": 13,
-    "beginTime": "2025-04-15 10:11:46",
-    "totalTime": "128s",
+    "testAll": 222,
+    "testFail": 20,
+    "beginTime": "2025-05-30 16:48:15",
+    "totalTime": "178s",
     "testSkip": 0,
     "testError": 0
 };
